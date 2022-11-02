@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div>
+        <ul>
+            {% for messages in get_flashed_messages() %}
+            <li>{{messages}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <h1>Register</h1>
+    <form action="/register/" method="post">
+        {# add CSRF Protection #}
+        {{ form.hidden_tag() }}
+
+        {# add fields and labels #}
+        {{ form.first_name.label }}
+        {{ form.first_name() }}
+
+        {{ form.last_name.label }}
+        {{ form.last_name() }}
+
+        {{ form.email.label }}
+        {{ form.email() }}
+
+        {{ form.password.label }}
+        {{ form.password() }}
+
+        {{ form.confirm_password.label }}
+        {{ form.confirm_password() }}
+
+        {# add submit button #}
+        {{ form.submit() }}
+    </form>
+    <a href="/">Back to Home</a>
+</body>
+</html>
