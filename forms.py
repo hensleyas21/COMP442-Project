@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms.fields import StringField, SubmitField, EmailField, PasswordField, RadioField
 from wtforms.validators import InputRequired, Optional, Length, EqualTo, Regexp
 
-class UserForm(FlaskForm):
+class RegistrationForm(FlaskForm):
     first_name = StringField("First Name", validators=[InputRequired()])
     last_name = StringField("Last Name", validators=[InputRequired()])
     email = EmailField("Email", validators=[InputRequired()])
@@ -11,3 +11,8 @@ class UserForm(FlaskForm):
     is_instructor = RadioField("I am a: ", choices=[(False,'Student'),(True,'Teacher')], validators=[InputRequired()])
     class_code = StringField("Class Code", validators=[Optional(), Regexp("^[a-zA-Z0-9_]*$", message="Class codes may only contain letters, numbers, and underscores")])
     submit = SubmitField("Submit")
+
+class LoginForm(FlaskForm):
+    email = EmailField("Email", validators=[InputRequired()])
+    password = PasswordField("Password", validators=[InputRequired()])
+    submit = SubmitField("Log In")

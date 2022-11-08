@@ -2,7 +2,7 @@ from enum import auto
 from flask import Flask, request, render_template, redirect, url_for, abort
 from flask import flash
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import login_user, logout_user, current_user
+from flask_login import login_user, logout_user, current_user, login_required
 
 import os, sys
 from requests import delete
@@ -18,7 +18,7 @@ with open(pepfile, 'rb') as fin:
 # create a new UpdatedHasher with pepper key
 pwd_hasher = UpdatedHasher(pepper_key)
 
-from forms import UserForm
+from forms import RegistrationForm, LoginForm
 
 from sqlalchemy import null
 script_dir = os.path.abspath(os.path.dirname(__file__))
@@ -62,23 +62,50 @@ with app.app_context():
     db.create_all()
 
 # we can remove this later down the line
+@app.route('/')
 @app.route('/home/')
 def home():
-    return render_template('home.html')
+    return render_template('home.html', user=current_user)
 
-@app.route('/')
-@app.route('/login/')
-def login():
-    return redirect(url_for('home'))
+@app.get('/login/')
+def get_login():
+    form = LoginForm()
+    return render_template("login.html", form=form)
+
+@app.post('/login/')
+def post_login():
+    # form = LoginForm()
+    # if form.validate():
+    #     # try to get the user associated with this email address
+    #     user = User.query.filter_by(email=form.email.data).first()
+    #     # if this user exists and the password matches
+    #     if user is not None and user.verify_password(form.password.data):
+    #         # log this user in through the login_manager
+    #         login_user(user)
+    #         # redirect the user to the page they wanted or the home page
+    #         next = request.args.get('next')
+    #         if next is None or not next.startswith('/'):
+    #             next = url_for('index')
+    #         return redirect(next)
+    #     else: # if the user does not exist or the password is incorrect
+    #         # flash an error message and redirect to login form
+    #         flash('Invalid email address or password')
+    #         return redirect(url_for('get_login'))
+    # else: # if the form was invalid
+    #     # flash error messages and redirect to get login form again
+    #     for field, error in form.errors.items():
+    #         flash(f"{field}: {error}")
+    #     return redirect(url_for('get_login'))
 
 @app.get('/register/')
 def get_register():
-    form = UserForm()
+    form = RegistrationForm()
     return render_template("register.html", form=form)
+
 
 @app.post('/register/')
 def post_register():
-    form = UserForm()
+    form = RegistrationForm()
     if (form.validate() 
         and not (User.query.filter_by(email=form.email.data.lower()).first())
         and not (form.is_instructor.data == 'True' and not form.class_code.data)
@@ -122,3 +149,10 @@ def quiz():
 @app.route('/grades/')
 def grades():
     pass
+
+@app.get('/logout/')
+@login_required
+def get_logout():
+    logout_user()
+    flash('You have been logged out')
+    return redirect(url_for('index'))
