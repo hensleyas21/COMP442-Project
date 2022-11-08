@@ -81,9 +81,9 @@ def post_register():
     form = UserForm()
     if (form.validate() 
         and not (User.query.filter_by(email=form.email.data.lower()).first())
-        and not (form.is_instructor.data and not form.class_code.data)
-        and not (form.is_instructor.data and User.query.filter_by(class_code=form.class_code.data.lower()).first())
-        and not (not form.is_instructor.data and form.class_code.data and not User.query.filter_by(class_code=form.class_code.data.lower()).first())):
+        and not (form.is_instructor.data == 'True' and not form.class_code.data)
+        and not (form.is_instructor.data == 'True' and User.query.filter_by(class_code=form.class_code.data.lower()).first())
+        and not (form.is_instructor.data == 'False' and form.class_code.data and not User.query.filter_by(class_code=form.class_code.data.lower()).first())):
         # form data is valid. Add it to session and redirect
         first_name = form.first_name.data
         last_name = form.last_name.data
@@ -99,13 +99,13 @@ def post_register():
         return redirect(url_for('home'))
     else:
         # flash error messages for all validation problems
-        if User.query.filter_by(email=form.email.data.lower()).first().email:
+        if User.query.filter_by(email=form.email.data.lower()).first():
             flash("Email already in use")
-        elif form.is_instructor.data and not form.class_code.data:
+        elif form.is_instructor.data == 'True' and not form.class_code.data:
             flash("Class code needed to create an instructor account")
-        elif form.is_instructor.data and User.query.filter_by(class_code=form.class_code.data.lower()).first():
+        elif form.is_instructor.data == 'True' and User.query.filter_by(class_code=form.class_code.data.lower()).first():
             flash("Class code already taken, please use a different code")
-        elif not form.is_instructor.data and form.class_code.data and not User.query.filter_by(class_code=form.class_code.data.lower()).first():
+        elif form.is_instructor.data == 'False' and form.class_code.data and not User.query.filter_by(class_code=form.class_code.data.lower()).first():
             flash("Invalid class code, please try a different code")
         for field,error in form.errors.items():
             flash(f"{field}: {error}")
