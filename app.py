@@ -65,7 +65,7 @@ with app.app_context():
 @app.route('/')
 @app.route('/home/')
 def home():
-    return render_template('home.html', user=current_user)
+    return render_template('home.html')
 
 @app.get('/login/')
 def get_login():
