@@ -96,6 +96,7 @@ def post_login():
     #     for field, error in form.errors.items():
     #         flash(f"{field}: {error}")
     #     return redirect(url_for('get_login'))
+    pass
 
 @app.get('/register/')
 def get_register():
