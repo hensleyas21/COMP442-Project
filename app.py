@@ -151,9 +151,9 @@ def quiz():
 def grades():
     pass
 
-@app.get('/logout/')
-@login_required
-def get_logout():
-    logout_user()
-    flash('You have been logged out')
-    return redirect(url_for('index'))
+# @app.get('/logout/')
+# @login_required
+# def get_logout():
+#     logout_user()
+#     flash('You have been logged out')
+#     return redirect(url_for('index'))
