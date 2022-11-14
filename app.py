@@ -57,12 +57,11 @@ class User(db.Model):
     def verify_password(self, pwd):
         return pwd_hasher.check(pwd, self.password_hash)
 
-
 with app.app_context():
     db.create_all()
 
 # we can remove this later down the line
-@app.route('/')
+
 @app.route('/home/')
 def home():
     return render_template('home.html')
@@ -98,6 +97,7 @@ def post_login():
     #     return redirect(url_for('get_login'))
     pass
 
+@app.route('/')
 @app.get('/register/')
 def get_register():
     form = RegistrationForm()
@@ -141,15 +141,15 @@ def post_register():
 
 @app.route('/study/')
 def study():
-    pass
+    return render_template('study.html')
 
 @app.route('/quiz/')
 def quiz():
-    pass
+    return render_template('quiz.html')
 
 @app.route('/grades/')
 def grades():
-    pass
+    return render_template('grades.html')
 
 # @app.get('/logout/')
 # @login_required
