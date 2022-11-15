@@ -24,7 +24,7 @@
         "type": "Ancient",
         "subtype": "Classical",
         "title": "The Warrior's Leave-Taking",
-        "artist": "Euthyimides",
+        "artist": "Euthymides",
         "year": [-510,-500]
     },
     "5": {
@@ -76,6 +76,8 @@
         "artist": "Praxitales",
         "year": [-340,-340]
     },
+
+    ////BEGIN ADDING PIECES HERE
     "12": {
         "type": "Ancient",
         "subtype": "Hellenistic",
@@ -595,63 +597,63 @@
         "year": [2006,2006]
     },
     "86": {
-        "type": "Baroque",
+        "type": "Baroque Music",
         "title": "The Four Seasons: Spring",
         "artist": "Antonio Vivaldi",
         "movement": 1,
         "year": [1725,1725]
     },
     "87": {
-        "type": "Baroque",
+        "type": "Baroque Music",
         "title": "Symphony No. 90",
         "artist": "Joseph Haydn",
         "movement": 1,
         "year": [1788,1788]
     },
     "88": {
-        "type": "Baroque",
+        "type": "Baroque Music",
         "title": "Symphony No. 88",
         "artist": "Joseph Haydn",
         "movement": 1,
         "year": [1787, 1787]
     },
     "89": {
-        "type": "Baroque",
+        "type": "Baroque Music",
         "title": "Symphony No. 88",
         "artist": "Joseph Haydn",
         "movement": 2,
         "year": [1787, 1787]
     },
     "90": {
-        "type": "Baroque",
+        "type": "Baroque Music",
         "title": "Symphony No. 88",
         "artist": "Joseph Haydn",
         "movement": 3,
         "year": [1787, 1787]
     },
     "91": {
-        "type": "Baroque",
+        "type": "Baroque Music",
         "title": "Symphony No. 88",
         "artist": "Joseph Haydn",
         "movement": 4,
         "year": [1787, 1787]
     },
     "92": {
-        "type": "Baroque",
+        "type": "Baroque Music",
         "title": "Symphony No. 80",
         "artist": "Joseph Haydn",
         "movement": 1,
         "year": [1784,1784]
     },
     "93": {
-        "type": "Baroque",
+        "type": "Baroque Music",
         "title": "Symphony No. 45",
         "artist": "Joseph Haydn",
         "movement": 1,
         "year": [1772, 1772]
     },
     "94": {
-        "type": "Classical",
+        "type": "Classical Music",
         "title": "The Marriage of Figaro",
         "artist": "Wolfgang Amadeus Mozart",
         "movement": 2,
@@ -659,7 +661,7 @@
         "year": [1786,1786]
     },
     "95": {
-        "type": "Classical",
+        "type": "Classical Music",
         "title": "The Marriage of Figaro",
         "artist": "Wolfgang Amadeus Mozart",
         "movement": 2,
@@ -667,7 +669,7 @@
         "year": [1786,1786]
     },
     "96": {
-        "type": "Classical",
+        "type": "Classical Music",
         "title": "The Marriage of Figaro",
         "artist": "Wolfgang Amadeus Mozart",
         "movement": 2,
@@ -675,14 +677,14 @@
         "year": [1786,1786]
     },
     "97": {
-        "type": "Classical",
+        "type": "Classical Music",
         "title": "The Marriage of Figaro",
         "artist": "Wolfgang Amadeus Mozart",
         "movement": "Sinfonia",
         "year": [1808,1808]
     },
     "98": {
-        "type": "Classical",
+        "type": "Classical Music",
         "title": "The Marriage of Figaro",
         "artist": "Wolfgang Amadeus Mozart",
         "movement": "1 No. 3",
@@ -690,7 +692,7 @@
     },
     
     "99": {
-        "type": "Classical",
+        "type": "Classical Music",
         "title": "The Marriage of Figaro",
         "artist": "Wolfgang Amadeus Mozart",
         "movement": 1,
@@ -698,56 +700,56 @@
         "year": [1786,1786]
     },
     "100": {
-        "type": "Classical",
+        "type": "Classical Music",
         "title": "The Marriage of Figaro",
         "artist": "Wolfgang Amadeus Mozart",
         "movement": "4 No. 29",
         "year": [1808,1808]
     },
     "101": {
-        "type": "Romantic",
+        "type": "Romantic Music",
         "title": "Symphony No. 5",
         "artist": "Ludwig van Beethoven",
         "movement": 1,
         "year": [1808,1808]
     },
     "102": {
-        "type": "Romantic",
+        "type": "Romantic Music",
         "title": "Symphony No. 5",
         "artist": "Ludwig van Beethoven",
         "movement": 2,
         "year": [1808,1808]
     },
     "103": {
-        "type": "Romantic",
+        "type": "Romantic Music",
         "title": "Symphony No. 5",
         "artist": "Ludwig van Beethoven",
         "movement": 3,
         "year": [1808,1808]
     },
     "104": {
-        "type": "Romantic",
+        "type": "Romantic Music",
         "title": "Symphony No. 5",
         "artist": "Ludwig van Beethoven",
         "movement": 4,
         "year": [1808,1808]
     },
     "105": {
-        "type": "Romantic",
+        "type": "Romantic Music",
         "title": "10 Pieces",
         "artist": "Sibelius",
         "movement": 1,
         "year": [1909,1909]
     },
     "106": {
-        "type": "Contemporary",
+        "type": "Contemporary Music",
         "title": "Piano Sonata No. 2: Concord Sonata",
         "artist": "Ives",
         "movement": 1,
         "year": [1920,1920]
     },
     "107": {
-        "type": "Contemporary",
+        "type": "Contemporary Music",
         "title": "Morph",
         "artist": "Moravec",
         "movement": 1,
