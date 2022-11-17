@@ -281,133 +281,133 @@
     },
     "41": {
         "type": "Baroque",
-        "subtype": "Dutch",
+        "subtype": "Dutch Baroque",
         "title": "Doubting Thomas",
         "artist": "Caravaggio",
         "year": [1602,1603]
     },
     "42": {
         "type": "Baroque",
-        "subtype": "Aristocratic",
+        "subtype": "Aristocratic Baroque",
         "title": "The Banquet of the Officers of the St. George Militia Company",
         "artist": "Frans Hals",
         "year": [1616,1616]
     },
     "43": {
         "type": "Baroque",
-        "subtype": "Dutch",
+        "subtype": "Dutch Baroque",
         "title": "The Water-Seller of Seville",
         "artist": "Diego Velzquez",
         "year": [1619,1620]
     },
     "44": {
         "type": "Baroque",
-        "subtype": "Dutch",
+        "subtype": "Dutch Baroque",
         "title": "The Virgin and Child Enthroned with Saints",
         "artist": "Peter Paul Rubens",
         "year": [1627,1628]
     },
     "45": {
         "type": "Baroque",
-        "subtype": "Dutch",
+        "subtype": "Dutch Baroque",
         "title": "The Allegory on the Blessings of Peace",
         "artist": "Peter Paul Rubens",
         "year": [1629,1630]
     },
     "46": {
         "type": "Baroque",
-        "subtype": "Dutch",
+        "subtype": "Dutch Baroque",
         "title": "Charles I of England",
         "artist": "Anthony van Dyck",
         "year": [1635,1635]
     },
     "47": {
         "type": "Baroque",
-        "subtype": "Dutch",
+        "subtype": "Dutch Baroque",
         "title": "Et in Arcadia Ego",
         "artist": "Nicolas Poussin",
         "year": [1638,1639]
     },
     "48": {
         "type": "Baroque",
-        "subtype": "Aristocratic",
+        "subtype": "Aristocratic Baroque",
         "title": "The Windmill by the River",
         "artist": "Jan van Goyen",
         "year": [1642,1642]
     },
     "49": {
         "type": "Baroque",
-        "subtype": "Aristocratic",
+        "subtype": "Aristocratic Baroque",
         "title": "David and Absalom",
         "artist": "Rembrandt van Rijn",
         "year": [1642,1642]
     },
     "50": {
         "type": "Baroque",
-        "subtype": "Aristocratic",
+        "subtype": "Aristocratic Baroque",
         "title": "Still Life with Drinking Horn of the St. Sebastian Archer's Guild",
         "artist": "William Kalf",
         "year": [1653,1653]
     },
     "51": {
         "type": "Baroque",
-        "subtype": "Aristocratic",
+        "subtype": "Aristocratic Baroque",
         "title": "Jan Six",
         "artist": "Rembrandt van Rijn",
         "year": [1654,1654]
     },
     "52": {
         "type": "Baroque",
-        "subtype": "Dutch",
+        "subtype": "Dutch Baroque",
         "title": "Las Meninas",
         "artist": "Diego Velzquez",
         "year": [1656,1656]
     },
     "53": {
         "type": "Baroque",
-        "subtype": "Aristocratic",
+        "subtype": "Aristocratic Baroque",
         "title": "Self-Portrait",
         "artist": "Rembrandt van Rijn",
         "year": [1655,1658]
     },
     "54": {
         "type": "Baroque",
-        "subtype": "Dutch",
+        "subtype": "Dutch Baroque",
         "title": "Prince Philip Prosper of Spain",
         "artist": "Diego Velzquez",
         "year": [1659,1659]
     },
     "55": {
         "type": "Baroque",
-        "subtype": "Aristocratic",
+        "subtype": "Aristocratic Baroque",
         "title": "The Kitchen Maid",
         "artist": "Jan Vermeer",
         "year": [1660,1660]
     },
     "56": {
         "type": "Baroque",
-        "subtype": "Aristocratic",
+        "subtype": "Aristocratic Baroque",
         "title": "The Pool Surrounded by Trees",
         "artist": "Jacob van Ruisdael",
         "year": [1665,1670]
     },
     "57": {
         "type": "Baroque",
-        "subtype": "Dutch",
+        "subtype": "Dutch Baroque",
         "title": "The Palace of Versailles",
         "artist": "Unknown",
         "year": [1655,1682]
     },
     "58": {
         "type": "Baroque",
-        "subtype": "Dutch",
+        "subtype": "Dutch Baroque",
         "title": "Fete in a Park",
         "artist": "Antoine Watteau",
         "year": [1719,1719]
     },
     "59": {
         "type": "Baroque",
-        "subtype": "Dutch",
+        "subtype": "Dutch Baroque",
         "title": "The Melk Monestary",
         "artist": "Unknown",
         "year": [1702,1738]
@@ -491,35 +491,35 @@
     },
     "71": {
         "type": "Contemporary",
-        "subtype": "Post-Impressionism",
-        "title": "Still Life",
+        "subtype": "Post-impressionism",
+        "title": "Still Life with Compote",
         "artist": "Paul Cezanne",
         "year": [1879,1882]
     },
     "72": {
         "type": "Contemporary",
-        "subtype": "Post-Impressionism",
+        "subtype": "Post-impressionism",
         "title": "Madame Cezanne",
         "artist": "Paul Cezanne",
         "year": [1883,1887]
     },
     "73": {
         "type": "Contemporary",
-        "subtype": "Post-Impressionism",
+        "subtype": "Post-impressionism",
         "title": "Cornfield with Cypresses",
         "artist": "Vincent van Gogh",
         "year": [1889,1889]
     },
     "74": {
         "type": "Contemporary",
-        "subtype": "Post-Impressionism",
+        "subtype": "Post-impressionism",
         "title": "The Artist's Room in Arles",
         "artist": "Vincent van Gogh",
         "year": [1889,1889]
     },
     "75": {
         "type": "Contemporary",
-        "subtype": "Post-Impressionism",
+        "subtype": "Post-impressionism",
         "title": "Mountains in Provence",
         "artist": "Paul Cezanne",
         "year": [1886,1890]
