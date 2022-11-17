@@ -281,7 +281,7 @@
     },
     "41": {
         "type": "Baroque",
-        "subtype": "Counter-Reformation",
+        "subtype": "Dutch",
         "title": "Doubting Thomas",
         "artist": "Caravaggio",
         "year": [1602,1603]
@@ -421,7 +421,7 @@
     },
     "61": {
         "type": "Contemporary",
-        "subtype": "Neoclassical/Romantic",
+        "subtype": "Romantic",
         "title": "The Ancient of Days",
         "artist": "William Blake",
         "year": [1794,1794]
@@ -547,7 +547,7 @@
     },
     "79": {
         "type": "Modernism",
-        "subtype": "Cubism and Surrealism",
+        "subtype": "Cubism",
         "title": "The Cellist",
         "artist": "Marc Chagall",
         "year": [1939,1939]
