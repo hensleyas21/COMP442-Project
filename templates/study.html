@@ -19,7 +19,7 @@
                 <section>
                     <h3>Ancients</h3>
                     <ul>
-                        <li>{{ form.archaic.label }} {{ form.archaic() }}</li>
+                        <li>{{ form.archaic.label }} {{ form.archaic() }} </li>
                         <li>{{ form.classical.label }} {{ form.classical() }}</li>
                         <li>{{ form.hellenistic.label }} {{ form.hellenistic() }}</li>
                     </ul>
@@ -69,6 +69,7 @@
                         <li>{{ form.baroqueMusic.label }} {{ form.baroqueMusic() }}</li>
                         <li>{{ form.classicalMusic.label }} {{ form.classicalMusic() }}</li>
                         <li>{{ form.romanticMusic.label }} {{ form.romanticMusic() }}</li>
+                        <li>{{ form.contemporaryMusic.label }} {{ form.contemporaryMusic() }}</li>
                     </ul>
                 </section>
                 <section>
@@ -83,7 +84,8 @@
                 <br>
                 {{piece.year}}
                 <br>
-            {%endfor%}
+                <img src="{{ url_for('static', filename = '../static/Artworks Database/Artpieces/'+piece.title+'.jpg') }}" alt="{{ piece.title }}" height="200px"/>
+            {% endfor %}
         {%endif%}
     </body>
 </html>

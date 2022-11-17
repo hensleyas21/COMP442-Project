@@ -18,7 +18,7 @@ class Music:
 
 # get the full path to the directory containing this file
 script_dir = os.path.abspath(os.path.dirname(__file__))
-jsonfile = os.path.join(script_dir, 'Artworks Database/pieces.json')
+jsonfile = os.path.join(script_dir, 'static/Artworks Database/pieces.json')
 with open(jsonfile, 'rt', encoding='utf-8') as fin:
     jsondata = json.load(fin)
 
