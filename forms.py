@@ -20,7 +20,7 @@ class LoginForm(FlaskForm):
 class StudyForm(FlaskForm):
     archaic = BooleanField("Archaic")
     classical = BooleanField("Classical")
-    hellenstic = BooleanField("Hellenistic")
+    hellenistic = BooleanField("Hellenistic")
     romanesque = BooleanField("Romansque")
     gothic = BooleanField("Gothic")
     renaissance = BooleanField("Renaissance")

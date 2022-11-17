@@ -157,8 +157,23 @@ def get_study():
 @app.post('/study/')
 def post_study():
     form = StudyForm()
+    filters = []
+    labels = {"archaic": "Archaic", "classical": "Classical", "hellenistic": "Hellenistic",
+        "romanesque": "Romanesque", "gothic": "Gothic", "renaissance": "Renaissance",
+        "northern": "Northern Renaissance", "aristocratic": "Aristocratic Baroque",
+        "dutch": "Dutch Baroque", "neoclassical": "Neoclassical", "romantic": "Romantic",
+        "impressionism": "Impressionism", "post_impressionism": "Post-impressionsism",
+        "cubism": "Cubism", "post_modernism": "Post-modernism", "surrealism": "Surrealism",
+        "abstract": "Abstract", "baroqueMusic": "Baroque Music", "classicalMusic": "Classical Music",
+        "romanticMusic": "Romantic Music"
+    }
     if form.validate():
-        return render_template('study.html', method='POST')
+        for key, value in form.data.items():
+            if value==True and key!= 'submit':
+                filters.append(labels[key])
+    pieces = dataloader.filter(filters)
+    print(pieces)
+    return render_template('study.html', method='POST', pieces = pieces)
 
 @app.route('/quiz/')
 def quiz():
