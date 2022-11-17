@@ -76,8 +76,6 @@
         "artist": "Praxitales",
         "year": [-340,-340]
     },
-
-    ////BEGIN ADDING PIECES HERE
     "12": {
         "type": "Ancient",
         "subtype": "Hellenistic",
@@ -92,13 +90,13 @@
         "artist": "Unknown",
         "year": [1093,1128]
     },
-    "14": {
-        "type": "Medieval",
-        "subtype": "Romanesque",
-        "title": "October Manuscript",
-        "artist": "Unknown",
-        "year": [1137,1147]
-    },
+                        "14": {
+                            "type": "Medieval",
+                            "subtype": "Romanesque",
+                            "title": "October Manuscript",
+                            "artist": "Unknown",
+                            "year": [1137,1147]
+                        },
     "15": {
         "type": "Medieval",
         "subtype": "Romanesque",
