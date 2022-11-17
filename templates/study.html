@@ -7,64 +7,69 @@
         <title>Study</title>
     </head>
     <body>
+        <a href="{{url_for('home')}}">Home</a>
+        <a href="{{url_for('quiz')}}">Quiz</a>
+        <a href="{{url_for('home')}}">Home</a>
+        <a href="{{url_for('quiz')}}">Quiz</a>
         study
         {% if method=="GET" %}
-        <form method = "POST">
-            <div>
-                <form method = "POST">
-                    {{ form.hidden_tag() }}
-                    <div>
-                        Ancients
-                        <div>{{ form.archaic.label }} {{ form.archaic() }}</div>
-                        <div>{{ form.classical.label }} {{ form.classical() }}</div>
-                        <div>{{ form.hellenistic.label }} {{ form.hellenistic() }}</div>
-                    </div>
-                    <div>
-                        Medeival
-                        <div>{{ form.romanesque.label }} {{ form.romanesque() }}</div>
-                        <div>{{ form.gothic.label }} {{ form.gothic() }}</div>
-                    </div>
-                    <div>
-                        Renaissance
-                        <div>{{ form.renaissance.label }} {{ form.renaissance() }}</div>
-                        <div>{{ form.northern.label }} {{ form.northern() }}</div>
-                    </div>
-                    <div>
-                        Baroque
-                        <div>{{ form.aristocratic.label }} {{ form.aristocratic() }}</div>
-                        <div>{{ form.dutch.label }} {{ form.dutch() }}</div>
-                    </div>
-                    <div>
-                        Contemporary
-                        <div>{{ form.neoclassical.label }} {{ form.neoclassical() }}</div>
-                        <div>{{ form.romantic.label }} {{ form.romantic() }}</div>
-                    </div>
-                    <div>
-                        Modernism
-                        <div>{{ form.impressionism.label }} {{ form.impressionism() }}</div>
-                        <div>{{ form.post_impressionism.label }} {{ form.post_impressionism() }}</div>
-                        <div>{{ form.cubism.label }} {{ form.cubism() }}</div>
-                        <div>{{ form.post_modernism.label }} {{ form.post_modernism() }}</div>
-                        <div>{{ form.surrealism.label }} {{ form.surrealism() }}</div>
-                        <div>{{ form.abstract.label }} {{ form.abstract() }}</div>
-                    </div>
-                    <div>
-                        {{ form.submit }}
-                    </div>
-                </form>
-            </div>
-        </form>
+        <div>
+            <form method = "POST">
+                {{ form.hidden_tag() }}
+                <section>
+                    <h3>Ancients</h3>
+                    <ul>
+                        <li>{{ form.archaic.label }} {{ form.archaic() }}</li>
+                        <li>{{ form.classical.label }} {{ form.classical() }}</li>
+                        <li>{{ form.hellenistic.label }} {{ form.hellenistic() }}</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Medeival</h3>
+                    <ul>
+                        <li>{{ form.romanesque.label }} {{ form.romanesque() }}</li>
+                        <li>{{ form.gothic.label }} {{ form.gothic() }}</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Renaissance</h3>
+                    <ul>
+                        <li>{{ form.renaissance.label }} {{ form.renaissance() }}</li>
+                        <li>{{ form.northern.label }} {{ form.northern() }}</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Baroque</h3>
+                    <ul>
+                        <li>{{ form.aristocratic.label }} {{ form.aristocratic() }}</li>
+                        <li>{{ form.dutch.label }} {{ form.dutch() }}</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Contemporary</h3>
+                    <ul>
+                        <li>{{ form.neoclassical.label }} {{ form.neoclassical() }}</li>
+                        <li>{{ form.romantic.label }} {{ form.romantic() }}</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Modernism</h3>
+                    <ul>
+                        <li>{{ form.impressionism.label }} {{ form.impressionism() }}</li>
+                        <li>{{ form.post_impressionism.label }} {{ form.post_impressionism() }}</li>
+                        <li>{{ form.cubism.label }} {{ form.cubism() }}</li>
+                        <li>{{ form.post_modernism.label }} {{ form.post_modernism() }}</li>
+                        <li>{{ form.surrealism.label }} {{ form.surrealism() }}</li>
+                        <li>{{ form.abstract.label }} {{ form.abstract() }}</li>
+                    </ul>
+                </section>
+                <section>
+                    {{ form.submit }}
+                </section>
+            </form>
+        </div>
         {%else%}
-            {%for piece in pieces%}
-                {{piece.title}}
-                <br>
-                {{piece.year}}
-                <br>
-            {% endfor%}
+            Arts.
         {%endif%}
-        <a href="{{url_for('home')}}">Home</a>
-        <a href="{{url_for('quiz')}}">Quiz</a>
-        <a href="{{url_for('home')}}">Home</a>
-        <a href="{{url_for('quiz')}}">Quiz</a>
     </body>
 </html>
