@@ -2,6 +2,7 @@ from enum import auto
 from flask import Flask, request, render_template, redirect, url_for, abort
 from flask import flash
 from flask_sqlalchemy import SQLAlchemy
+import forms
 from flask_login import login_user, logout_user, current_user, login_required
 import artwork_dataloader
 import os, sys
@@ -150,7 +151,7 @@ def post_register():
 
 @app.route('/study/')
 def study():
-
+    form = StudyForm()
     return render_template('study.html')
 
 @app.route('/quiz/')
