@@ -10,6 +10,7 @@
         study
         <a href="{{url_for('home')}}">Home</a>
         <a href="{{url_for('quiz')}}">Quiz</a>
+        {% if method == "get" %}
         <div>
             <form method = "POST">
                 {{ form.hidden_tag() }}
@@ -53,5 +54,9 @@
                 </div>
             </form>
         </div>
+        {% else %}
+        <!--for question in questions-->
+            <!--render question-->
+        {% endif %}
     </body>
 </html>
