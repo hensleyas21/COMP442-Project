@@ -44,6 +44,7 @@ class User(db.Model):
     password_hash = db.Column(db.LargeBinary, nullable=False)
     is_instructor = db.Column(db.Boolean, nullable=False)
     class_code = db.Column(db.Unicode, nullable=True)
+    scores = db.relationship('Score', backref='user')
 
     # make a write-only password property that just updates the stored hash
     @property
@@ -56,6 +57,13 @@ class User(db.Model):
     # add a verify_password convenience method
     def verify_password(self, pwd):
         return pwd_hasher.check(pwd, self.password_hash)
+
+class Score(db.Model):
+    __tablename__ = 'Scores'
+    id = db.Column(db.Integer, primary_key=True)
+    user_email = db.Column(db.Unicode, db.ForeignKey('Users.email'), nullable=False)
+    score = db.Column(db.Float, nullable=False)
+
 
 with app.app_context():
     db.create_all()
