@@ -1,12 +1,12 @@
 from enum import auto
+from requests import request
 from flask import Flask, request, render_template, redirect, url_for, abort
 from flask import flash
 from flask_sqlalchemy import SQLAlchemy
 from forms import *
 from flask_login import login_user, logout_user, current_user, login_required
-import artwork_dataloader
+import artwork_dataloader as dataloader
 import os, sys
-from requests import delete
 
 import os
 from password_hashing import UpdatedHasher
@@ -107,7 +107,6 @@ def post_login():
     #     return redirect(url_for('get_login'))
     pass
 
-@app.route('/')
 @app.get('/register/')
 def get_register():
     form = RegistrationForm()
@@ -149,11 +148,17 @@ def post_register():
             flash(f"{field}: {error}")
         return redirect(url_for('get_register'))
 
-@app.route('/study/')
-def study():
+
+@app.get('/study/')
+def get_study():
     form = StudyForm()
-    if request.method == 'GET':
-        return render_template('study.html', form=form)
+    return render_template('study.html', form=form, method='GET') 
+
+@app.post('/study/')
+def post_study():
+    form = StudyForm()
+    if form.validate():
+        return render_template('study.html', method='POST')
 
 @app.route('/quiz/')
 def quiz():

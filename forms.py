@@ -20,5 +20,5 @@ class LoginForm(FlaskForm):
 class StudyForm(FlaskForm):
     archaic = BooleanField("Archaic")
     classical = BooleanField("Classical")
-    hellenstic = BooleanField("Hellenistic")
-
+    hellenistic = BooleanField("Hellenistic")
+    submit = SubmitField("Submit")

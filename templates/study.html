@@ -8,15 +8,20 @@
     </head>
     <body>
         study
-        <a href="{{url_for('home')}}">Home</a>
-        <a href="{{url_for('quiz')}}">Quiz</a>
+        {% if method=="GET" %}
         <form method = "POST">
             {{ form.hidden_tag() }}
             <div>
-                <div>{{ form.archaic.label }} {{ form.archaic() }}</div>
-                <div>{{ form.classical.label }} {{ form.classical() }}</div>
-                <div>{{ form.hellenistic.label }} {{ form.hellenistic() }}</div>
+                <div>{{form.archaic.label}} {{form.archaic()}}</div>
+                <div>{{form.classical.label}} {{form.classical()}}</div>
+                <div>{{form.hellenistic.label}} {{form.hellenistic()}}</div>
+                <div>{{form.submit}}</div>
             </div>
         </form>
+        {%else%}
+            Arts.
+        {%endif%}
+        <a href="{{url_for('home')}}">Home</a>
+        <a href="{{url_for('quiz')}}">Quiz</a>
     </body>
 </html>
