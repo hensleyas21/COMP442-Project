@@ -18,12 +18,16 @@ class Music:
 
 # get the full path to the directory containing this file
 script_dir = os.path.abspath(os.path.dirname(__file__))
-jsonfile = os.path.join(script_dir, 'pieces.json')
+jsonfile = os.path.join(script_dir, 'Artworks Database/pieces.json')
 with open(jsonfile, 'rt', encoding='utf-8') as fin:
     jsondata = json.load(fin)
 
-# convert this data using Schemas
-pieces = []
-for piece_id, piece_data in jsondata.items():
-    piece = piece_data
-    pieces.append(piece)
+# filter pieces based on form input
+def filter(filters):
+    pieces = []
+    for piece_id, piece_data in jsondata.items():
+        for filter in filters:
+            if piece_data.get('subtype') == filter:
+                piece = piece_data
+                pieces.append(piece)
+    return pieces
