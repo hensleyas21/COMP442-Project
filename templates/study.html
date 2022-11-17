@@ -69,7 +69,13 @@
             </form>
         </div>
         {%else%}
-            Arts.
+            {% for piece in pieces%}
+                <br>
+                {{piece.title}}
+                <br>
+                {{piece.year}}
+                <br>
+            {%endfor%}
         {%endif%}
     </body>
 </html>
