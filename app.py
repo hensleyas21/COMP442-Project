@@ -161,7 +161,7 @@ def post_study():
         "romanesque": "Romanesque", "gothic": "Gothic", "renaissance": "Renaissance",
         "northern": "Northern Renaissance", "aristocratic": "Aristocratic Baroque",
         "dutch": "Dutch Baroque", "neoclassical": "Neoclassical", "romantic": "Romantic",
-        "impressionism": "Impressionism", "post_impressionism": "Post-impressionsism",
+        "impressionism": "Impressionism", "post_impressionism": "Post-impressionism",
         "cubism": "Cubism", "post_modernism": "Post-modernism", "surrealism": "Surrealism",
         "abstract": "Abstract", "baroqueMusic": "Baroque Music", "classicalMusic": "Classical Music",
         "romanticMusic": "Romantic Music"
