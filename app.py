@@ -4,7 +4,6 @@ from flask import Flask, request, render_template, redirect, url_for, abort
 from flask import flash
 from flask_sqlalchemy import SQLAlchemy
 from forms import *
-from flask_login import login_user, logout_user, current_user, login_required
 import artwork_dataloader as dataloader
 import os, sys
 
