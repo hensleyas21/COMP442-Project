@@ -64,12 +64,20 @@
                     </ul>
                 </section>
                 <section>
+                    <h3>Music</h3>
+                    <ul>
+                        <li>{{ form.baroqueMusic.label }} {{ form.baroqueMusic() }}</li>
+                        <li>{{ form.classicalMusic.label }} {{ form.classicalMusic() }}</li>
+                        <li>{{ form.romanticMusic.label }} {{ form.romanticMusic() }}</li>
+                    </ul>
+                </section>
+                <section>
                     {{ form.submit }}
                 </section>
             </form>
         </div>
         {%else%}
-            Arts.
+
         {%endif%}
     </body>
 </html>
