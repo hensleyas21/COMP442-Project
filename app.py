@@ -1,5 +1,4 @@
 from enum import auto
-from requests import request
 from flask import Flask, request, render_template, redirect, url_for, abort
 from flask import flash
 from flask_sqlalchemy import SQLAlchemy
@@ -7,7 +6,8 @@ from forms import *
 import artwork_dataloader as dataloader
 import os, sys
 from password_hashing import UpdatedHasher
-from sqlalchemy import null
+from flask_login import UserMixin, LoginManager, login_required
+from flask_login import login_user, logout_user, current_user
 
 # find your pepper file
 scriptdir = os.path.dirname(__file__)
@@ -33,6 +33,13 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
+# Prepare and connect the LoginManager to this app
+app.login_manager = LoginManager()
+app.login_manager.login_view = 'get_login'
+@app.login_manager.user_loader
+def load_user(email):
+    return User.query.get(email)
+
 class User(db.Model):
     __tablename__ = 'Users'
     email = db.Column(db.Unicode, primary_key=True)
@@ -54,6 +61,12 @@ class User(db.Model):
     # add a verify_password convenience method
     def verify_password(self, pwd):
         return pwd_hasher.check(pwd, self.password_hash)
+    
+    def is_active(self):
+        return current_user.email == self.email
+    
+    def get_id(self):
+        return self.email
 
 class Score(db.Model):
     __tablename__ = 'Scores'
@@ -61,17 +74,17 @@ class Score(db.Model):
     user_email = db.Column(db.Unicode, db.ForeignKey('Users.email'), nullable=False)
     score = db.Column(db.Float, nullable=False)
 
-
 with app.app_context():
     db.create_all()
 
 # we can remove this later down the line
 
+@app.get('/')
 @app.route('/home/')
+# @login_required
 def home():
     return render_template('home.html')
 
-@app.get('/')
 @app.get('/login/')
 def get_login():
     form = LoginForm()
@@ -79,28 +92,28 @@ def get_login():
 
 @app.post('/login/')
 def post_login():
-    # form = LoginForm()
-    # if form.validate():
-    #     # try to get the user associated with this email address
-    #     user = User.query.filter_by(email=form.email.data).first()
-    #     # if this user exists and the password matches
-    #     if user is not None and user.verify_password(form.password.data):
-    #         # log this user in through the login_manager
-    #         login_user(user)
-    #         # redirect the user to the page they wanted or the home page
-    #         next = request.args.get('next')
-    #         if next is None or not next.startswith('/'):
-    #             next = url_for('index')
-    #         return redirect(next)
-    #     else: # if the user does not exist or the password is incorrect
-    #         # flash an error message and redirect to login form
-    #         flash('Invalid email address or password')
-    #         return redirect(url_for('get_login'))
-    # else: # if the form was invalid
-    #     # flash error messages and redirect to get login form again
-    #     for field, error in form.errors.items():
-    #         flash(f"{field}: {error}")
-    #     return redirect(url_for('get_login'))
+    form = LoginForm()
+    if form.validate():
+        # try to get the user associated with this email address
+        user = User.query.filter_by(email=form.email.data).first()
+        # if this user exists and the password matches
+        if user is not None and user.verify_password(form.password.data):
+            # log this user in through the login_manager
+            login_user(user)
+            # redirect the user to the page they wanted or the home page
+            next = request.args.get('next')
+            if next is None or not next.startswith('/'):
+                next = url_for('home')
+            return redirect(next)
+        else: # if the user does not exist or the password is incorrect
+            # flash an error message and redirect to login form
+            flash('Invalid email address or password')
+            return redirect(url_for('get_login'))
+    else: # if the form was invalid
+        # flash error messages and redirect to get login form again
+        for field, error in form.errors.items():
+            flash(f"{field}: {error}")
+        return redirect(url_for('get_login'))
     pass
 
 @app.get('/register/')
@@ -179,9 +192,9 @@ def quiz():
 def grades():
     return render_template('grades.html')
 
-# @app.get('/logout/')
-# @login_required
-# def get_logout():
-#     logout_user()
-#     flash('You have been logged out')
-#     return redirect(url_for('index'))
+@app.get('/logout/')
+@login_required
+def get_logout():
+    logout_user()
+    flash('You have been logged out')
+    return redirect(url_for('get_login'))
