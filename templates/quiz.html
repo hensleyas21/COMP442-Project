@@ -13,5 +13,22 @@
         <a href="{{url_for('quiz')}}">Quiz</a>
         <a href="{{url_for('grades')}}">Grades</a>
     </nav>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        {{ for question in questions }}
+            <div>
+                {% if question.type == "artist" %}
+                    <p>Who painted this painting?</p>
+                {% elif question.type == "year" %}
+                    <p>What year was this painting painted in?</p>
+                {% else %}
+                    <p>What is the title of this painting?</p>
+                {% endif %}
+                <img src="" alt="could not load image">
+                {{ form.answers.label }} {{ form.answers() }}
+            </div>
+        {{ endfor }}
+        {{ form.submit }}
+    </form>
 </body>
 </html>
