@@ -6,9 +6,8 @@ from flask_sqlalchemy import SQLAlchemy
 from forms import *
 import artwork_dataloader as dataloader
 import os, sys
-
-import os
 from password_hashing import UpdatedHasher
+from sqlalchemy import null
 
 # find your pepper file
 scriptdir = os.path.dirname(__file__)
@@ -19,9 +18,6 @@ with open(pepfile, 'rb') as fin:
 # create a new UpdatedHasher with pepper key
 pwd_hasher = UpdatedHasher(pepper_key)
 
-from forms import RegistrationForm, LoginForm
-
-from sqlalchemy import null
 script_dir = os.path.abspath(os.path.dirname(__file__))
 sys.path.append(script_dir)
 
@@ -75,6 +71,7 @@ with app.app_context():
 def home():
     return render_template('home.html')
 
+@app.get('/')
 @app.get('/login/')
 def get_login():
     form = LoginForm()
@@ -164,7 +161,7 @@ def post_study():
         "impressionism": "Impressionism", "post_impressionism": "Post-impressionism",
         "cubism": "Cubism", "post_modernism": "Post-modernism", "surrealism": "Surrealism",
         "abstract": "Abstract", "baroqueMusic": "Baroque Music", "classicalMusic": "Classical Music",
-        "romanticMusic": "Romantic Music"
+        "romanticMusic": "Romantic Music", "contemporaryMusic": "Contemporary Music"
     }
     if form.validate():
         for key, value in form.data.items():
