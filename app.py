@@ -184,9 +184,11 @@ def post_study():
     print(pieces)
     return render_template('study.html', method='POST', pieces = pieces)
 
-@app.route('/quiz/')
-def quiz():
-    return render_template('quiz.html')
+@app.get('/quiz/')
+def get_quiz():
+    form = QuizForm()
+    return render_template('quiz.html', form=form)
+
 
 @app.route('/grades/')
 def grades():

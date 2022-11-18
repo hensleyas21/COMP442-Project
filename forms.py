@@ -41,3 +41,28 @@ class StudyForm(FlaskForm):
     contemporaryMusic = BooleanField("Contemporary Music")
     submit = SubmitField("Submit")
 
+class QuizForm(FlaskForm):
+    archaic = BooleanField("Archaic")
+    classical = BooleanField("Classical")
+    hellenistic = BooleanField("Hellenistic")
+    romanesque = BooleanField("Romansque")
+    gothic = BooleanField("Gothic")
+    renaissance = BooleanField("Renaissance")
+    northern = BooleanField("Northern Renaissance")
+    aristocratic = BooleanField("Aristocratic Baroque")
+    dutch = BooleanField("Dutch Baroque")
+    neoclassical = BooleanField("Neoclassical")
+    romantic = BooleanField("Romantic")
+    impressionism = BooleanField("Impressionism")
+    post_impressionism = BooleanField("Post-impressionism")
+    cubism = BooleanField("Cubism")
+    post_modernism = BooleanField("Post-modernism")
+    surrealism = BooleanField("Surrealism")
+    abstract = BooleanField("Abstract")
+    baroqueMusic = BooleanField("Baroque Music")
+    classicalMusic = BooleanField("Classical Music")
+    romanticMusic = BooleanField("Romantic Music")
+    contemporaryMusic = BooleanField("Contemporary Music")
+    submit = SubmitField("Submit")
+
+
