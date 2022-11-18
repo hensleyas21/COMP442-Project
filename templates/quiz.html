@@ -24,7 +24,7 @@
                 {% else %}
                     <p>What is the title of this painting?</p>
                 {% endif %}
-                <img src="" alt="could not load image">
+                <img src="{{ question.filePath }}" alt="could not load image">
                 {{ form.answers.label }} {{ form.answers() }}
             </div>
         {{ endfor }}

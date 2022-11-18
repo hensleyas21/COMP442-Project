@@ -61,7 +61,6 @@ class Score(db.Model):
     user_email = db.Column(db.Unicode, db.ForeignKey('Users.email'), nullable=False)
     score = db.Column(db.Float, nullable=False)
 
-
 with app.app_context():
     db.create_all()
 
