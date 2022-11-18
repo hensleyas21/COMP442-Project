@@ -7,11 +7,12 @@
         <title>Study</title>
     </head>
     <body>
-        <a href="{{url_for('home')}}">Home</a>
-        <a href="{{url_for('quiz')}}">Quiz</a>
-        <a href="{{url_for('home')}}">Home</a>
-        <a href="{{url_for('quiz')}}">Quiz</a>
-        study
+        <nav>
+            <a href="{{url_for('home')}}">Home</a>
+            <a href="{{url_for('study')}}">Study</a>
+            <a href="{{url_for('quiz')}}">Quiz</a>
+            <a href="{{url_for('grades')}}">Grades</a>
+        </nav>
         {% if method=="GET" %}
         <div>
             <form method = "POST">
