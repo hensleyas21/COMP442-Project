@@ -61,33 +61,53 @@
                     <div>{{ form.neoclassical(class="form-check-input") }}
                         <label for= "form.neoclassical.label.field_id"> {{ form.neoclassical.label.text }} </label>
                     </div>
-                    <li>{{ form.romantic.label }} {{ form.romantic() }}</li>
+                    <div>{{ form.romantic(class="form-check-input") }}
+                        <label for= "form.romantic.label.field_id"> {{ form.romantic.label.text }} </label>
+                    </div>                
                 </section>
                 <section>
                     <h3>Modernism</h3>
-                    <ul>
-                        <li>{{ form.impressionism.label }} {{ form.impressionism() }}</li>
-                        <li>{{ form.post_impressionism.label }} {{ form.post_impressionism() }}</li>
-                        <li>{{ form.cubism.label }} {{ form.cubism() }}</li>
-                        <li>{{ form.post_modernism.label }} {{ form.post_modernism() }}</li>
-                        <li>{{ form.surrealism.label }} {{ form.surrealism() }}</li>
-                        <li>{{ form.abstract.label }} {{ form.abstract() }}</li>
-                    </ul>
+                        <div>{{ form.impressionism(class="form-check-input") }}
+                            <label for= "form.impressionism.label.field_id"> {{ form.impressionism.label.text }} </label>
+                        </div>
+                        <div>{{ form.post_impressionism(class="form-check-input") }}
+                            <label for= "form.post_impressionism.label.field_id"> {{ form.post_impressionism.label.text }} </label>
+                        </div>    
+                        <div>{{ form.cubism(class="form-check-input") }}
+                            <label for= "form.cubism.label.field_id"> {{ form.cubism.label.text }} </label>
+                        </div>
+                        <div>{{ form.post_modernism(class="form-check-input") }}
+                            <label for= "form.post_modernism.label.field_id"> {{ form.post_modernism.label.text }} </label>
+                        </div>    
+                        <div>{{ form.surrealism(class="form-check-input") }}
+                            <label for= "form.surrealism.label.field_id"> {{ form.surrealism.label.text }} </label>
+                        </div>
+                        <div>{{ form.abstract(class="form-check-input") }}
+                            <label for= "form.abstract.label.field_id"> {{ form.abstract.label.text }} </label>
+                        </div>    
                 </section>
                 <section>
                     <h3>Music</h3>
-                    <ul>
-                        <li>{{ form.baroqueMusic.label }} {{ form.baroqueMusic() }}</li>
-                        <li>{{ form.classicalMusic.label }} {{ form.classicalMusic() }}</li>
-                        <li>{{ form.romanticMusic.label }} {{ form.romanticMusic() }}</li>
-                        <li>{{ form.contemporaryMusic.label }} {{ form.contemporaryMusic() }}</li>
-                    </ul>
+                    <div>{{ form.baroqueMusic(class="form-check-input") }}
+                        <label for= "form.baroqueMusic.label.field_id"> {{ form.baroqueMusic.label.text }} </label>
+                    </div>
+                    <div>{{ form.classicalMusic(class="form-check-input") }}
+                        <label for= "form.classicalMusic.label.field_id"> {{ form.classicalMusic.label.text }} </label>
+                    </div>
+                    <div>{{ form.romanticMusic(class="form-check-input") }}
+                        <label for= "form.romanticMusic.label.field_id"> {{ form.romanticMusic.label.text }} </label>
+                    </div>           
+                    <div>{{ form.contemporaryMusic(class="form-check-input") }}
+                        <label for= "form.contemporaryMusic.label.field_id"> {{ form.contemporaryMusic.label.text }} </label>
+                    </div>     
                 </section>
+            </div>
+            <div class="col-12">
                 <section>
                     {{ form.submit }}
                 </section>
+            </div>
             </form>
-        </div>
         {%else%}
             {% for piece in pieces%}
                 <br>
