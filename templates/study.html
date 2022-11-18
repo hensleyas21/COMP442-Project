@@ -8,9 +8,7 @@
     </head>
     <body>
         <a href="{{url_for('home')}}">Home</a>
-        <a href="{{url_for('quiz')}}">Quiz</a>
-        <a href="{{url_for('home')}}">Home</a>
-        <a href="{{url_for('quiz')}}">Quiz</a>
+        <a href="{{url_for('get_quiz')}}">Quiz</a>
         study
         {% if method=="GET" %}
         <div>
@@ -25,7 +23,7 @@
                     </ul>
                 </section>
                 <section>
-                    <h3>Medeival</h3>
+                    <h3>Medieval</h3>
                     <ul>
                         <li>{{ form.romanesque.label }} {{ form.romanesque() }}</li>
                         <li>{{ form.gothic.label }} {{ form.gothic() }}</li>
@@ -73,7 +71,7 @@
                     </ul>
                 </section>
                 <section>
-                    {{ form.submit }}
+                    {{form.submit }}
                 </section>
             </form>
         </div>

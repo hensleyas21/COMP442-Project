@@ -8,9 +8,10 @@
 </head>
 <body>
     <h2>Welcome {% if user %}, {{user.first_name}}{% endif %}</h2>
-    <a href="{{url_for('study')}}">Study</a>
-    <a href="{{url_for('quiz')}}">Quiz</a>
+    <a href="{{url_for('get_study')}}">Study</a>
+    <a href="{{url_for('get_quiz')}}">Quiz</a>
     <a href="{{url_for('grades')}}">Grades</a>
+
 
 </body>
 </html>
