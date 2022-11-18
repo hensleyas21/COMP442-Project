@@ -9,8 +9,8 @@
     <body>
         <nav>
             <a href="{{url_for('home')}}">Home</a>
-            <a href="{{url_for('study')}}">Study</a>
-            <a href="{{url_for('quiz')}}">Quiz</a>
+            <a href="{{url_for('get_study')}}">Study</a>
+            <a href="{{url_for('get_quiz')}}">Quiz</a>
             <a href="{{url_for('grades')}}">Grades</a>
         </nav>
         {% if method=="GET" %}
