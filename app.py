@@ -8,6 +8,30 @@ import os, sys
 from password_hashing import UpdatedHasher
 from flask_login import UserMixin, LoginManager, login_required
 from flask_login import login_user, logout_user, current_user
+from PIL import Image
+import random
+import string
+
+# random string generator
+def gen_string():
+    letters = string.ascii_lowercase
+    return ''.join(random.choice(letters) for i in range(10))
+
+# method that I call inside jinja to do the cropping
+def cropper_weighted_random(percent, path):
+    image = Image.open(path) 
+    splitted = path.split('.')
+    extension = '.' + splitted[len(splitted)-1]
+    width = percent*image.size[0]
+    x = random.randrange(image.size[0])
+    length = percent*image.size[1]
+    y = random.randrange(image.size[1])
+    image_cropped = image.crop((x,y,x + width, y + length))
+    #path = '/static/CroppedImages/_cropped/'
+    name = gen_string() + extension
+    filename = './static/Artworks Database/Artpieces/' + name
+    image_cropped.save(filename)
+    return name
 
 # find your pepper file
 scriptdir = os.path.dirname(__file__)
@@ -22,6 +46,11 @@ script_dir = os.path.abspath(os.path.dirname(__file__))
 sys.path.append(script_dir)
 
 app = Flask(__name__)
+
+#making the crop method a global one so that the jinja template can access it
+app.jinja_env.globals.update(
+    cropper_weighted_random=cropper_weighted_random)
+
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 app.config['SECRET_KEY'] = 'aquickbrownfoxjumpedoverthelazydog'
 
@@ -187,8 +216,30 @@ def post_study():
 @app.get('/quiz/')
 def get_quiz():
     form = QuizForm()
-    return render_template('quiz.html', form=form)
+    return render_template('quiz.html', form=form, method='GET')
 
+@app.post('/quiz/')
+def post_quiz():
+    form = QuizForm()
+    filters = []
+    labels = {"archaic": "Archaic", "classical": "Classical", "hellenistic": "Hellenistic",
+        "romanesque": "Romanesque", "gothic": "Gothic", "renaissance": "Renaissance",
+        "northern": "Northern Renaissance", "aristocratic": "Aristocratic Baroque",
+        "dutch": "Dutch Baroque", "neoclassical": "Neoclassical", "romantic": "Romantic",
+        "impressionism": "Impressionism", "post_impressionism": "Post-impressionism",
+        "cubism": "Cubism", "post_modernism": "Post-modernism", "surrealism": "Surrealism",
+        "abstract": "Abstract", "baroqueMusic": "Baroque Music", "classicalMusic": "Classical Music",
+        "romanticMusic": "Romantic Music", "contemporaryMusic": "Contemporary Music"
+    }
+    if form.validate():
+        for key, value in form.data.items():
+            if value==True and key!= 'submit':
+                filters.append(labels[key])
+        pieces = dataloader.filter(filters)
+        questions = ['Who is the artist?', 'When was that piece made?', 'What type of piece is this?']
+        return render_template('quiz.html', method='POST', questions=questions, pieces=pieces)
+    else:
+        redirect(url_for('get_quiz'))
 
 @app.route('/grades/')
 def grades():

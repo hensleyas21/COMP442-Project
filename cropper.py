@@ -33,9 +33,9 @@ def cropper_weighted(percent, x,y):
     return image_cropped
 
 
-def cropper_weighted_random(percent, string, path):
+def cropper_weighted_random(percent, string):
     output_list = []
-    names = os.listdir('')
+    names = os.listdir('/static/Artworks Database/Artpieces/')
     for el in names:
         if el.split('.')[1] in ('jpg', 'jpeg', 'png'):
             image = Image.open(el)
