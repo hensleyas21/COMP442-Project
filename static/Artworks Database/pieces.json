@@ -90,13 +90,13 @@
         "artist": "Unknown",
         "year": [1093,1128]
     },
-                        "14": {
-                            "type": "Medieval",
-                            "subtype": "Romanesque",
-                            "title": "October Manuscript",
-                            "artist": "Unknown",
-                            "year": [1137,1147]
-                        },
+    "14": {
+        "type": "Medieval",
+        "subtype": "Romanesque",
+        "title": "October Manuscript",
+        "artist": "Unknown",
+        "year": [1137,1147]
+    },
     "15": {
         "type": "Medieval",
         "subtype": "Romanesque",
@@ -135,7 +135,7 @@
     "20": {
         "type": "Medieval",
         "subtype": "Gothic",
-        "title": "Annunciation from the Infancy of Christ Window (Chartres)",
+        "title": "Annunciation from the Infancy of Christ Window",
         "artist": "Unknown",
         "year": [1145,1194]
     },
@@ -268,7 +268,14 @@
     "39": {
         "type": "Renaissance",
         "subtype": "Northern Renaissance",
-        "title": "The Isenheim Alterpiece",
+        "title": "The Crucifixion",
+        "artist": "Matthias Grunewald",
+        "year": [1515,1515]
+    },
+    "39": {
+        "type": "Renaissance",
+        "subtype": "Northern Renaissance",
+        "title": "The Resurrection",
         "artist": "Matthias Grunewald",
         "year": [1515,1515]
     },
