@@ -1,7 +1,19 @@
 from flask_wtf import FlaskForm
 from wtforms.fields import StringField, SubmitField, EmailField, PasswordField, RadioField, BooleanField
 from wtforms.validators import InputRequired, Optional, Length, EqualTo, Regexp
+from cropper import cropper_weighted_random
+import os
+script_dir = os.path.dirname(__file__)
+import string
 
+# random string generator
+def gen_string():
+    letters = string.ascii_lowercase
+    return ''.join(random.choice(letters) for i in range(10))
+
+import random
+class qa(FlaskForm):
+    pass
 class RegistrationForm(FlaskForm):
     first_name = StringField("First Name", validators=[InputRequired()])
     last_name = StringField("Last Name", validators=[InputRequired()])
@@ -41,7 +53,7 @@ class StudyForm(FlaskForm):
     contemporaryMusic = BooleanField("Contemporary Music")
     submit = SubmitField("Submit")
 
-class QuizForm(FlaskForm):
+class QuizSelectionForm(FlaskForm):
     archaic = BooleanField("Archaic")
     classical = BooleanField("Classical")
     hellenistic = BooleanField("Hellenistic")
@@ -65,4 +77,17 @@ class QuizForm(FlaskForm):
     contemporaryMusic = BooleanField("Contemporary Music")
     submit = SubmitField("Submit")
 
-
+class QuizForm(FlaskForm):
+    def getImages(self, pieces):
+        questions = ['Who made this piece of art?', 'When was this piece of art made?', 'What is the title of this piece of art?']
+        images = []
+        for i in range(0,1):
+            questionIndex = random.randint(0, 2)
+            index =  random.randint(0, len(pieces) - 1)
+            string_name = gen_string()
+            cropped_images = cropper_weighted_random(.4, string_name)
+            print("I AM LOOKINF FOR YOU " + script_dir+"/static/Artworks Database/Artpieces/")
+            images.__add__(cropped_images[0])
+        print(images)
+        return images
+    submit = SubmitField("Submit")
