@@ -236,7 +236,7 @@ def post_quiz():
             if value==True and key!= 'submit':
                 filters.append(labels[key])
         pieces = dataloader.filter(filters)
-        questions = ['Who is the artist?', 'When was that piece made?', 'What type of piece is this?']
+        questions = ['Who is the artist?', 'When was that piece made?', 'What is the name of this artpiece?']
         return render_template('quiz.html', method='POST', questions=questions, pieces=pieces)
     else:
         redirect(url_for('get_quiz'))
