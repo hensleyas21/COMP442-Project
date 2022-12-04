@@ -90,13 +90,13 @@
         "artist": "Unknown",
         "year": [1093,1128]
     },
-                        "14": {
-                            "type": "Medieval",
-                            "subtype": "Romanesque",
-                            "title": "October Manuscript",
-                            "artist": "Unknown",
-                            "year": [1137,1147]
-                        },
+    "14": {
+        "type": "Medieval",
+        "subtype": "Romanesque",
+        "title": "October Manuscript",
+        "artist": "Unknown",
+        "year": [1137,1147]
+    },
     "15": {
         "type": "Medieval",
         "subtype": "Romanesque",
@@ -135,7 +135,7 @@
     "20": {
         "type": "Medieval",
         "subtype": "Gothic",
-        "title": "Annunciation from the Infancy of Christ Window (Chartres)",
+        "title": "Annunciation from the Infancy of Christ Window",
         "artist": "Unknown",
         "year": [1145,1194]
     },
@@ -268,333 +268,340 @@
     "39": {
         "type": "Renaissance",
         "subtype": "Northern Renaissance",
-        "title": "The Isenheim Alterpiece",
+        "title": "The Crucifixion",
         "artist": "Matthias Grunewald",
         "year": [1515,1515]
     },
     "40": {
         "type": "Renaissance",
         "subtype": "Northern Renaissance",
+        "title": "The Resurrection",
+        "artist": "Matthias Grunewald",
+        "year": [1515,1515]
+    },
+    "41": {
+        "type": "Renaissance",
+        "subtype": "Northern Renaissance",
         "title": "The Danube Landscape",
         "artist": "Albrecht Altdorfer",
         "year": [1526,1528]
     },
-    "41": {
+    "42": {
         "type": "Baroque",
         "subtype": "Dutch Baroque",
         "title": "Doubting Thomas",
         "artist": "Caravaggio",
         "year": [1602,1603]
     },
-    "42": {
+    "43": {
         "type": "Baroque",
         "subtype": "Aristocratic Baroque",
         "title": "The Banquet of the Officers of the St. George Militia Company",
         "artist": "Frans Hals",
         "year": [1616,1616]
     },
-    "43": {
+    "44": {
         "type": "Baroque",
         "subtype": "Dutch Baroque",
         "title": "The Water-Seller of Seville",
         "artist": "Diego Velzquez",
         "year": [1619,1620]
     },
-    "44": {
+    "45": {
         "type": "Baroque",
         "subtype": "Dutch Baroque",
         "title": "The Virgin and Child Enthroned with Saints",
         "artist": "Peter Paul Rubens",
         "year": [1627,1628]
     },
-    "45": {
+    "46": {
         "type": "Baroque",
         "subtype": "Dutch Baroque",
         "title": "The Allegory on the Blessings of Peace",
         "artist": "Peter Paul Rubens",
         "year": [1629,1630]
     },
-    "46": {
+    "47": {
         "type": "Baroque",
         "subtype": "Dutch Baroque",
         "title": "Charles I of England",
         "artist": "Anthony van Dyck",
         "year": [1635,1635]
     },
-    "47": {
+    "48": {
         "type": "Baroque",
         "subtype": "Dutch Baroque",
         "title": "Et in Arcadia Ego",
         "artist": "Nicolas Poussin",
         "year": [1638,1639]
     },
-    "48": {
+    "49": {
         "type": "Baroque",
         "subtype": "Aristocratic Baroque",
         "title": "The Windmill by the River",
         "artist": "Jan van Goyen",
         "year": [1642,1642]
     },
-    "49": {
+    "50": {
         "type": "Baroque",
         "subtype": "Aristocratic Baroque",
         "title": "David and Absalom",
         "artist": "Rembrandt van Rijn",
         "year": [1642,1642]
     },
-    "50": {
+    "51": {
         "type": "Baroque",
         "subtype": "Aristocratic Baroque",
         "title": "Still Life with Drinking Horn of the St. Sebastian Archer's Guild",
         "artist": "William Kalf",
         "year": [1653,1653]
     },
-    "51": {
+    "52": {
         "type": "Baroque",
         "subtype": "Aristocratic Baroque",
         "title": "Jan Six",
         "artist": "Rembrandt van Rijn",
         "year": [1654,1654]
     },
-    "52": {
+    "53": {
         "type": "Baroque",
         "subtype": "Dutch Baroque",
         "title": "Las Meninas",
         "artist": "Diego Velzquez",
         "year": [1656,1656]
     },
-    "53": {
+    "54": {
         "type": "Baroque",
         "subtype": "Aristocratic Baroque",
         "title": "Self-Portrait",
         "artist": "Rembrandt van Rijn",
         "year": [1655,1658]
     },
-    "54": {
+    "55": {
         "type": "Baroque",
         "subtype": "Dutch Baroque",
         "title": "Prince Philip Prosper of Spain",
         "artist": "Diego Velzquez",
         "year": [1659,1659]
     },
-    "55": {
+    "56": {
         "type": "Baroque",
         "subtype": "Aristocratic Baroque",
         "title": "The Kitchen Maid",
         "artist": "Jan Vermeer",
         "year": [1660,1660]
     },
-    "56": {
+    "57": {
         "type": "Baroque",
         "subtype": "Aristocratic Baroque",
         "title": "The Pool Surrounded by Trees",
         "artist": "Jacob van Ruisdael",
         "year": [1665,1670]
     },
-    "57": {
+    "58": {
         "type": "Baroque",
         "subtype": "Dutch Baroque",
         "title": "The Palace of Versailles",
         "artist": "Unknown",
         "year": [1655,1682]
     },
-    "58": {
+    "59": {
         "type": "Baroque",
         "subtype": "Dutch Baroque",
         "title": "Fete in a Park",
         "artist": "Antoine Watteau",
         "year": [1719,1719]
     },
-    "59": {
+    "60": {
         "type": "Baroque",
         "subtype": "Dutch Baroque",
         "title": "The Melk Monestary",
         "artist": "Unknown",
         "year": [1702,1738]
     },
-    "60": {
+    "61": {
         "type": "Contemporary",
         "subtype": "Neoclassical",
         "title": "Marat Assassinated",
         "artist": "Jacques-Louis David",
         "year": [1793,1793]
     },
-    "61": {
+    "62": {
         "type": "Contemporary",
         "subtype": "Romantic",
         "title": "The Ancient of Days",
         "artist": "William Blake",
         "year": [1794,1794]
     },
-    "62": {
+    "63": {
         "type": "Contemporary",
         "subtype": "Neoclassical",
         "title": "Monticello",
         "artist": "Thomas Jefferson",
         "year": [1796,1806]
     },
-    "63": {
+    "64": {
         "type": "Contemporary",
         "subtype": "Romantic",
         "title": "The Giant",
         "artist": "Francisco Goya",
         "year": [1818,1818]
     },
-    "64": {
+    "65": {
         "type": "Contemporary",
         "subtype": "Romantic",
         "title": "The Landscape in the Silesian Mountains",
         "artist": "Casper David Friedrich",
         "year": [1815,1820]
     },
-    "65": {
+    "66": {
         "type": "Contemporary",
         "subtype": "Romantic",
         "title": "The Haywain",
         "artist": "John Constable",
         "year": [1821,1821]
     },
-    "66": {
+    "67": {
         "type": "Contemporary",
         "subtype": "Romantic",
         "title": "Arab Cavalry Practicing a Charge",
         "artist": "Eugene Delacroix",
         "year": [1832,1832]
     },
-    "67": {
+    "68": {
         "type": "Contemporary",
         "subtype": "Romantic",
         "title": "Steamer in a Snowstorm",
         "artist": "J. M. Turner",
         "year": [1842,1842]
     },
-    "68": {
+    "69": {
         "type": "Contemporary",
         "subtype": "Impressionism",
         "title": "The Balcony",
         "artist": "Edouard Manet",
         "year": [1868,1869]
     },
-    "69": {
+    "70": {
         "type": "Contemporary",
         "subtype": "Impressionism",
         "title": "Dance at the Moulin de la Galette",
         "artist": "Pierre-Auguste Renoir",
         "year": [1876,1876]
     },
-    "70": {
+    "71": {
         "type": "Contemporary",
         "subtype": "Impressionism",
         "title": "Gare St. Lazare",
         "artist": "Claude Monet",
         "year": [1877,1877]
     },
-    "71": {
+    "72": {
         "type": "Contemporary",
         "subtype": "Post-impressionism",
         "title": "Still Life with Compote",
         "artist": "Paul Cezanne",
         "year": [1879,1882]
     },
-    "72": {
+    "73": {
         "type": "Contemporary",
         "subtype": "Post-impressionism",
         "title": "Madame Cezanne",
         "artist": "Paul Cezanne",
         "year": [1883,1887]
     },
-    "73": {
+    "74": {
         "type": "Contemporary",
         "subtype": "Post-impressionism",
         "title": "Cornfield with Cypresses",
         "artist": "Vincent van Gogh",
         "year": [1889,1889]
     },
-    "74": {
+    "75": {
         "type": "Contemporary",
         "subtype": "Post-impressionism",
         "title": "The Artist's Room in Arles",
         "artist": "Vincent van Gogh",
         "year": [1889,1889]
     },
-    "75": {
+    "76": {
         "type": "Contemporary",
         "subtype": "Post-impressionism",
         "title": "Mountains in Provence",
         "artist": "Paul Cezanne",
         "year": [1886,1890]
     },
-    "76": {
+    "77": {
         "type": "Modernism",
         "subtype": "Cubism",
         "title": "Violins and Grapes",
         "artist": "Pablo Picasso",
         "year": [1912,1912]
     },
-    "77": {
+    "78": {
         "type": "Modernism",
         "subtype": "Post-modernism",
         "title": "L.H.O.O.Q",
         "artist": "Marcel Duchamp",
         "year": [1919,1919]
     },
-    "78": {
+    "79": {
         "type": "Modernism",
         "subtype": "Surrealism",
         "title": "Apparition of Face and Fruit-Bowl on a Beach",
         "artist": "Salvador Dali",
         "year": [1938,1938]
     },
-    "79": {
+    "80": {
         "type": "Modernism",
         "subtype": "Cubism",
         "title": "The Cellist",
         "artist": "Marc Chagall",
         "year": [1939,1939]
     },
-    "80": {
+    "81": {
         "type": "Modernism",
         "subtype": "Abstract",
         "title": "One: Number 31, 1950",
         "artist": "Jackson Pollock",
         "year": [1950,1950]
     },
-    "81": {
+    "82": {
         "type": "Modernism",
         "subtype": "Abstract",
         "title": "Elegy to the Spanish Republic #34",
         "artist": "Robert Motherwell",
         "year": [1953,1954]
     },
-    "82": {
+    "83": {
         "type": "Modernism",
         "subtype": "Abstract",
         "title": "The Bay",
         "artist": "Helen Frankenthaler",
         "year": [1963,1963]
     },
-    "83": {
+    "84": {
         "type": "Modernism",
         "subtype": "Post-modernism",
         "title": "Clothespin",
         "artist": "Claes Oldenburg",
         "year": [1976,1976]
     },
-    "84": {
+    "85": {
         "type": "Modernism",
         "subtype": "Abstract",
         "title": "Sacrificial Grace",
         "artist": "Makoto Fujimura",
         "year": [1997,1997]
     },
-    "85": {
+    "86": {
         "type": "Modernism",
         "subtype": "Post-modernism",
         "title": "The Tranquility of Solitude: for George Dyer",
         "artist": "Damien Hirst",
         "year": [2006,2006]
     },
-    "86": {
+    "87": {
         "type": "Music", 
         "subtype": "Baroque Music",
         "title": "The Four Seasons: Spring",
@@ -602,7 +609,7 @@
         "movement": 1,
         "year": [1725,1725]
     },
-    "87": {
+    "88": {
         "type": "Music", 
         "subtype": "Baroque Music",
         "title": "Symphony No. 90",
@@ -610,20 +617,12 @@
         "movement": 1,
         "year": [1788,1788]
     },
-    "88": {
-        "type": "Music", 
-        "subtype": "Baroque Music",
-        "title": "Symphony No. 88",
-        "artist": "Joseph Haydn",
-        "movement": 1,
-        "year": [1787, 1787]
-    },
     "89": {
         "type": "Music", 
         "subtype": "Baroque Music",
         "title": "Symphony No. 88",
         "artist": "Joseph Haydn",
-        "movement": 2,
+        "movement": 1,
         "year": [1787, 1787]
     },
     "90": {
@@ -631,7 +630,7 @@
         "subtype": "Baroque Music",
         "title": "Symphony No. 88",
         "artist": "Joseph Haydn",
-        "movement": 3,
+        "movement": 2,
         "year": [1787, 1787]
     },
     "91": {
@@ -639,10 +638,18 @@
         "subtype": "Baroque Music",
         "title": "Symphony No. 88",
         "artist": "Joseph Haydn",
-        "movement": 4,
+        "movement": 3,
         "year": [1787, 1787]
     },
     "92": {
+        "type": "Music", 
+        "subtype": "Baroque Music",
+        "title": "Symphony No. 88",
+        "artist": "Joseph Haydn",
+        "movement": 4,
+        "year": [1787, 1787]
+    },
+    "93": {
         "type": "Music", 
         "subtype": "Baroque Music",
         "title": "Symphony No. 80",
@@ -650,7 +657,7 @@
         "movement": 1,
         "year": [1784,1784]
     },
-    "93": {
+    "94": {
         "type": "Music", 
         "subtype": "Baroque Music",
         "title": "Symphony No. 45",
@@ -658,7 +665,7 @@
         "movement": 1,
         "year": [1772, 1772]
     },
-    "94": {
+    "95": {
         "type": "Music", 
         "subtype": "Classical Music",
         "title": "The Marriage of Figaro",
@@ -667,7 +674,7 @@
         "scene": 1,
         "year": [1786,1786]
     },
-    "95": {
+    "96": {
         "type": "Music", 
         "subtype": "Classical Music",
         "title": "The Marriage of Figaro",
@@ -676,7 +683,7 @@
         "scene": 6,
         "year": [1786,1786]
     },
-    "96": {
+    "97": {
         "type": "Music", 
         "subtype": "Classical Music",
         "title": "The Marriage of Figaro",
@@ -685,7 +692,7 @@
         "scene": 9,
         "year": [1786,1786]
     },
-    "97": {
+    "98": {
         "type": "Music", 
         "subtype": "Classical Music",
         "title": "The Marriage of Figaro",
@@ -693,7 +700,7 @@
         "movement": "Sinfonia",
         "year": [1808,1808]
     },
-    "98": {
+    "99": {
         "type": "Music", 
         "subtype": "Classical Music",
         "title": "The Marriage of Figaro",
@@ -702,7 +709,7 @@
         "year": [1808,1808]
     },
     
-    "99": {
+    "100": {
         "type": "Music", 
         "subtype": "Classical Music",
         "title": "The Marriage of Figaro",
@@ -711,7 +718,7 @@
         "scene": 8,
         "year": [1786,1786]
     },
-    "100": {
+    "101": {
         "type": "Music", 
         "subtype": "Classical Music",
         "title": "The Marriage of Figaro",
@@ -719,20 +726,12 @@
         "movement": "4 No. 29",
         "year": [1808,1808]
     },
-    "101": {
-        "type": "Music", 
-        "subtype": "Romantic Music",
-        "title": "Symphony No. 5",
-        "artist": "Ludwig van Beethoven",
-        "movement": 1,
-        "year": [1808,1808]
-    },
     "102": {
         "type": "Music", 
         "subtype": "Romantic Music",
         "title": "Symphony No. 5",
         "artist": "Ludwig van Beethoven",
-        "movement": 2,
+        "movement": 1,
         "year": [1808,1808]
     },
     "103": {
@@ -740,7 +739,7 @@
         "subtype": "Romantic Music",
         "title": "Symphony No. 5",
         "artist": "Ludwig van Beethoven",
-        "movement": 3,
+        "movement": 2,
         "year": [1808,1808]
     },
     "104": {
@@ -748,10 +747,18 @@
         "subtype": "Romantic Music",
         "title": "Symphony No. 5",
         "artist": "Ludwig van Beethoven",
-        "movement": 4,
+        "movement": 3,
         "year": [1808,1808]
     },
     "105": {
+        "type": "Music", 
+        "subtype": "Romantic Music",
+        "title": "Symphony No. 5",
+        "artist": "Ludwig van Beethoven",
+        "movement": 4,
+        "year": [1808,1808]
+    },
+    "106": {
         "type": "Music", 
         "subtype": "Romantic Music",
         "title": "10 Pieces",
@@ -759,7 +766,7 @@
         "movement": 1,
         "year": [1909,1909]
     },
-    "106": {
+    "107": {
         "type": "Music", 
         "subtype": "Contemporary Music",
         "title": "Piano Sonata No. 2: Concord Sonata",
@@ -767,7 +774,7 @@
         "movement": 1,
         "year": [1920,1920]
     },
-    "107": {
+    "108": {
         "type": "Music", 
         "subtype": "Contemporary Music",
         "title": "Morph",

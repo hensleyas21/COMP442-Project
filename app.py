@@ -15,7 +15,9 @@ import string
 # random string generator
 def gen_string():
     letters = string.ascii_lowercase
-    return ''.join(random.choice(letters) for i in range(10))
+    file_name = ''.join(random.choice(letters) for i in range(10))
+    file_name = file_name + '.jpg'
+    return 
 
 # method that I call inside jinja to do the cropping
 def cropper_weighted_random(percent, path):
@@ -215,12 +217,12 @@ def post_study():
 
 @app.get('/quiz/')
 def get_quiz():
-    form = QuizForm()
+    form = QuizSelectionForm()
     return render_template('quiz.html', form=form, method='GET')
 
 @app.post('/quiz/')
 def post_quiz():
-    form = QuizForm()
+    form = QuizSelectionForm()
     filters = []
     labels = {"archaic": "Archaic", "classical": "Classical", "hellenistic": "Hellenistic",
         "romanesque": "Romanesque", "gothic": "Gothic", "renaissance": "Renaissance",
@@ -232,12 +234,17 @@ def post_quiz():
         "romanticMusic": "Romantic Music", "contemporaryMusic": "Contemporary Music"
     }
     if form.validate():
+        qform = QuizForm()
+        
         for key, value in form.data.items():
             if value==True and key!= 'submit':
                 filters.append(labels[key])
         pieces = dataloader.filter(filters)
         questions = ['Who is the artist?', 'When was that piece made?', 'What is the name of this artpiece?']
         return render_template('quiz.html', method='POST', questions=questions, pieces=pieces)
+        qform.getImages(pieces)
+        #questions = ['Who is the artist?', 'When was that piece made?', 'What type of piece is this?']
+        return render_template('quiz.html', method='POST')#, questions=questions, pieces=pieces)
     else:
         redirect(url_for('get_quiz'))
 

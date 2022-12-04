@@ -2,7 +2,8 @@ import os
 from PIL import Image
 import random
 from pydub import AudioSegment
-
+import os
+script_dir = os.path.dirname(__file__)
 
 def slice(path, start, end):
     sound = AudioSegment.from_mp3(path)
@@ -35,10 +36,13 @@ def cropper_weighted(percent, x,y):
 
 def cropper_weighted_random(percent, string):
     output_list = []
-    names = os.listdir('/static/Artworks Database/Artpieces/')
+    names = os.listdir(script_dir + '/static/Artworks Database/Artpieces/')
+    print("I AM LOOKINF FOR YOU PART 2") 
+    print(names)
     for el in names:
         if el.split('.')[1] in ('jpg', 'jpeg', 'png'):
-            image = Image.open(el)
+            print("Im looking at this file rh " + el)
+            image = Image.open(script_dir + '/static/Artworks Database/Artpieces/' + el)
             width = percent*image.size[0]
             x = random.randrange(image.size[0])
             length = percent*image.size[1]
@@ -46,7 +50,7 @@ def cropper_weighted_random(percent, string):
             print(x,y)
             print(width, length)
             image_cropped = image.crop((x,y,x + width, y + length))
-            path = '/static/CroppedImages'
+            path = script_dir + '/static/CroppedImages/'
             image_cropped.save(path + string)
             output_list.append(path + string)
     return output_list
