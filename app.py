@@ -2,6 +2,8 @@ from enum import auto
 from flask import Flask, request, render_template, redirect, url_for, abort
 from flask import flash
 from flask_sqlalchemy import SQLAlchemy
+import jinja2
+from jinja2.ext import Extension
 from forms import *
 import artwork_dataloader as dataloader
 import os, sys
@@ -11,6 +13,8 @@ from flask_login import login_user, logout_user, current_user
 from PIL import Image
 import random
 import string
+import cropper
+import json
 
 # random string generator
 def gen_string():
@@ -18,6 +22,18 @@ def gen_string():
     file_name = ''.join(random.choice(letters) for i in range(10))
     file_name = file_name + '.jpg'
     return 
+
+def save(dic):
+    file = open('hash.json', 'a')
+    stuff =json.dumps(dic)
+    file.write(stuff)
+    file.close()
+
+def stringify(word):
+    return str(word)
+
+def jsonif(dic):
+    return json.dump(dic)
 
 # method that I call inside jinja to do the cropping
 def cropper_weighted_random(percent, path):
@@ -35,6 +51,18 @@ def cropper_weighted_random(percent, path):
     image_cropped.save(filename)
     return name
 
+# To shuffle elements of a list in jinja
+def filter_shuffle(seq):
+    try:
+        result = list(seq)
+        random.shuffle(result)
+        return result
+    except:
+        return seq
+
+def length(arr):
+    return len(arr)
+
 # find your pepper file
 scriptdir = os.path.dirname(__file__)
 pepfile = os.path.join(scriptdir, "pepper.bin")
@@ -51,7 +79,10 @@ app = Flask(__name__)
 
 #making the crop method a global one so that the jinja template can access it
 app.jinja_env.globals.update(
-    cropper_weighted_random=cropper_weighted_random)
+    cropper_weighted_random=cropper_weighted_random, len=length, str=stringify, dump=jsonif, save=save)
+    
+app.jinja_env.add_extension('jinja2.ext.do')
+app.jinja_env.filters['shuffle'] = filter_shuffle
 
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 app.config['SECRET_KEY'] = 'aquickbrownfoxjumpedoverthelazydog'
@@ -145,7 +176,7 @@ def post_login():
         for field, error in form.errors.items():
             flash(f"{field}: {error}")
         return redirect(url_for('get_login'))
-    pass
+
 
 @app.get('/register/')
 def get_register():
@@ -185,7 +216,7 @@ def post_register():
         elif form.is_instructor.data == 'False' and form.class_code.data and not User.query.filter_by(class_code=form.class_code.data.lower()).first():
             flash("Invalid class code, please try a different code")
         for field,error in form.errors.items():
-            flash(f"{field}: {error}")
+            flash(f"{field}:{error}")
         return redirect(url_for('get_register'))
 
 
@@ -209,10 +240,10 @@ def post_study():
     }
     if form.validate():
         for key, value in form.data.items():
-            if value==True and key!= 'submit':
-                filters.append(labels[key])
+            if value and key!= 'submit':
+                if key!='csrf_token':
+                    filters.append(labels[key])
     pieces = dataloader.filter(filters)
-    print(pieces)
     return render_template('study.html', method='POST', pieces = pieces)
 
 @app.get('/quiz/')
@@ -234,19 +265,19 @@ def post_quiz():
         "romanticMusic": "Romantic Music", "contemporaryMusic": "Contemporary Music"
     }
     if form.validate():
-        qform = QuizForm()
-        
         for key, value in form.data.items():
-            if value==True and key!= 'submit':
-                filters.append(labels[key])
+            if value and key!= 'submit':
+                if key!='csrf_token':
+                    filters.append(labels[key])
         pieces = dataloader.filter(filters)
-        questions = ['Who is the artist?', 'When was that piece made?', 'What is the name of this artpiece?']
-        return render_template('quiz.html', method='POST', questions=questions, pieces=pieces)
-        qform.getImages(pieces)
-        #questions = ['Who is the artist?', 'When was that piece made?', 'What type of piece is this?']
-        return render_template('quiz.html', method='POST')#, questions=questions, pieces=pieces)
+        return render_template('quiz.html', pieces=pieces,form=form, method='POST')
     else:
         redirect(url_for('get_quiz'))
+
+@app.route('/quizMode/<string:artworks>')
+def get_quizMode(artworks):
+    quizform = QuizForm()
+    return render_template('quizMode.html', quizform=quizform, artworks=artworks)
 
 @app.route('/grades/')
 def grades():
