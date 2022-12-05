@@ -287,6 +287,5 @@ def grades():
 @login_required
 def get_logout():
     logout_user()
-    session['user'] = None
     flash('You have been logged out')
     return redirect(url_for('get_login'))

@@ -129,9 +129,10 @@
                 <br>
                 {{piece.title}}
                 <br>
-                {{piece.year}}
+                Year: {{piece.year}}
                 <br>
                 <img src="{{ url_for('static', filename = '../static/Artworks Database/Artpieces/'+piece.title+'.jpg') }}" alt="{{ piece.title }}" height="200px"/>
+                <br>
             {% endfor %}
         {%endif%}
     </body>
