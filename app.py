@@ -270,7 +270,9 @@ def post_quiz():
                 if key!='csrf_token':
                     filters.append(labels[key])
         pieces = dataloader.filter(filters)
-        return render_template('quiz.html', pieces=pieces,form=form, method='POST')
+        qform = QuizForm()
+        qform.generateQuestions(pieces)
+        return render_template('test.html', form=qform, questions = [value for key, value in qform._fields.items() if isinstance(value, RadioField)], method='POST')
     else:
         redirect(url_for('get_quiz'))
 
@@ -289,3 +291,4 @@ def get_logout():
     logout_user()
     flash('You have been logged out')
     return redirect(url_for('get_login'))
+    
