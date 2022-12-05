@@ -1,6 +1,6 @@
 from enum import auto
 from flask import Flask, request, render_template, redirect, url_for, abort
-from flask import flash
+from flask import flash, session
 from flask_sqlalchemy import SQLAlchemy
 from forms import *
 import artwork_dataloader as dataloader
@@ -254,5 +254,6 @@ def grades():
 @login_required
 def get_logout():
     logout_user()
+    session['user'] = None
     flash('You have been logged out')
     return redirect(url_for('get_login'))
