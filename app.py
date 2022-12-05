@@ -1,6 +1,6 @@
 from enum import auto
 from flask import Flask, request, render_template, redirect, url_for, abort
-from flask import flash
+from flask import flash, session
 from flask_sqlalchemy import SQLAlchemy
 import jinja2
 from jinja2.ext import Extension
