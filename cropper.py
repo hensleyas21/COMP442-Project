@@ -3,7 +3,17 @@ from PIL import Image
 import random
 from pydub import AudioSegment
 import os
+import string
+
 script_dir = os.path.dirname(__file__)
+
+
+# random string generator
+def gen_string():
+    letters = string.ascii_lowercase
+    file_name = ''.join(random.choice(letters) for i in range(10))
+    file_name = file_name + '.jpg'
+    return file_name
 
 def slice(path, start, end):
     sound = AudioSegment.from_mp3(path)
@@ -33,6 +43,17 @@ def cropper_weighted(percent, x,y):
             image_cropped.save(str(percent) + '_cropped_'+ el)
     return image_cropped
 
+def crop(percent, path):
+    image = Image.open(path)
+    width = percent*image.size[0]
+    x = random.randrange(image.size[0])
+    length = percent*image.size[1]
+    y = random.randrange(image.size[1])
+    image_cropped = image.crop((x,y,x + width, y + length))
+    path = script_dir + '\static\CroppedImages\\'
+    new_path = path + gen_string()
+    image_cropped.save(new_path)
+    return new_path
 
 def cropper_weighted_random(percent, string):
     output_list = []
@@ -42,7 +63,7 @@ def cropper_weighted_random(percent, string):
     for el in names:
         if el.split('.')[1] in ('jpg', 'jpeg', 'png'):
             print("Im looking at this file rh " + el)
-            image = Image.open(script_dir + '/static/Artworks Database/Artpieces/' + el)
+            image = Image.open(script_dir + '\static\Artworks Database\Artpieces\\' + el)
             width = percent*image.size[0]
             x = random.randrange(image.size[0])
             length = percent*image.size[1]
@@ -50,7 +71,7 @@ def cropper_weighted_random(percent, string):
             print(x,y)
             print(width, length)
             image_cropped = image.crop((x,y,x + width, y + length))
-            path = script_dir + '/static/CroppedImages/'
+            path = script_dir + '\\static\\CroppedImages\\'
             image_cropped.save(path + string)
             output_list.append(path + string)
     return output_list
@@ -89,3 +110,5 @@ def grab_with_threshold(image):
             croppy.show()
             y = y + step
         x = x + step
+
+#print(crop(.4,r'C:\\Users\ALLARASSEMJJ20\WebProject\\COMP442-Project\static\Artworks Database\Artpieces\\The Nymph Galatea.jpg'))
