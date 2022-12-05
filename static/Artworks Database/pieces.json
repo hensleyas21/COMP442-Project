@@ -401,200 +401,179 @@
     "58": {
         "type": "Baroque",
         "subtype": "Dutch Baroque",
-        "title": "The Palace of Versailles",
-        "artist": "Unknown",
-        "year": [1655,1682]
-    },
-    "59": {
-        "type": "Baroque",
-        "subtype": "Dutch Baroque",
         "title": "Fete in a Park",
         "artist": "Antoine Watteau",
         "year": [1719,1719]
     },
-    "60": {
+    "59": {
         "type": "Baroque",
         "subtype": "Dutch Baroque",
         "title": "The Melk Monestary",
         "artist": "Unknown",
         "year": [1702,1738]
     },
-    "61": {
+    "60": {
         "type": "Contemporary",
         "subtype": "Neoclassical",
         "title": "Marat Assassinated",
         "artist": "Jacques-Louis David",
         "year": [1793,1793]
     },
-    "62": {
+    "61": {
         "type": "Contemporary",
         "subtype": "Romantic",
         "title": "The Ancient of Days",
         "artist": "William Blake",
         "year": [1794,1794]
     },
-    "63": {
+    "62": {
         "type": "Contemporary",
         "subtype": "Neoclassical",
         "title": "Monticello",
         "artist": "Thomas Jefferson",
         "year": [1796,1806]
     },
-    "64": {
+    "63": {
         "type": "Contemporary",
         "subtype": "Romantic",
         "title": "The Giant",
         "artist": "Francisco Goya",
         "year": [1818,1818]
     },
-    "65": {
+    "64": {
         "type": "Contemporary",
         "subtype": "Romantic",
         "title": "The Landscape in the Silesian Mountains",
         "artist": "Casper David Friedrich",
         "year": [1815,1820]
     },
-    "66": {
+    "65": {
         "type": "Contemporary",
         "subtype": "Romantic",
         "title": "The Haywain",
         "artist": "John Constable",
         "year": [1821,1821]
     },
-    "67": {
+    "66": {
         "type": "Contemporary",
         "subtype": "Romantic",
         "title": "Arab Cavalry Practicing a Charge",
         "artist": "Eugene Delacroix",
         "year": [1832,1832]
     },
-    "68": {
+    "67": {
         "type": "Contemporary",
         "subtype": "Romantic",
         "title": "Steamer in a Snowstorm",
         "artist": "J. M. Turner",
         "year": [1842,1842]
     },
-    "69": {
+    "68": {
         "type": "Contemporary",
         "subtype": "Impressionism",
         "title": "The Balcony",
         "artist": "Edouard Manet",
         "year": [1868,1869]
     },
-    "70": {
+    "69": {
         "type": "Contemporary",
         "subtype": "Impressionism",
         "title": "Dance at the Moulin de la Galette",
         "artist": "Pierre-Auguste Renoir",
         "year": [1876,1876]
     },
-    "71": {
+    "70": {
         "type": "Contemporary",
         "subtype": "Impressionism",
         "title": "Gare St. Lazare",
         "artist": "Claude Monet",
         "year": [1877,1877]
     },
-    "72": {
+    "71": {
         "type": "Contemporary",
         "subtype": "Post-impressionism",
         "title": "Still Life with Compote",
         "artist": "Paul Cezanne",
         "year": [1879,1882]
     },
-    "73": {
+    "72": {
         "type": "Contemporary",
         "subtype": "Post-impressionism",
         "title": "Madame Cezanne",
         "artist": "Paul Cezanne",
         "year": [1883,1887]
     },
-    "74": {
+    "73": {
         "type": "Contemporary",
         "subtype": "Post-impressionism",
         "title": "Cornfield with Cypresses",
         "artist": "Vincent van Gogh",
         "year": [1889,1889]
     },
-    "75": {
+    "74": {
         "type": "Contemporary",
         "subtype": "Post-impressionism",
         "title": "The Artist's Room in Arles",
         "artist": "Vincent van Gogh",
         "year": [1889,1889]
     },
-    "76": {
+    "75": {
         "type": "Contemporary",
         "subtype": "Post-impressionism",
         "title": "Mountains in Provence",
         "artist": "Paul Cezanne",
         "year": [1886,1890]
     },
-    "77": {
+    "76": {
         "type": "Modernism",
         "subtype": "Cubism",
         "title": "Violins and Grapes",
         "artist": "Pablo Picasso",
         "year": [1912,1912]
     },
-    "78": {
-        "type": "Modernism",
-        "subtype": "Post-modernism",
-        "title": "L.H.O.O.Q",
-        "artist": "Marcel Duchamp",
-        "year": [1919,1919]
-    },
-    "79": {
+    "77": {
         "type": "Modernism",
         "subtype": "Surrealism",
         "title": "Apparition of Face and Fruit-Bowl on a Beach",
         "artist": "Salvador Dali",
         "year": [1938,1938]
     },
-    "80": {
+    "78": {
         "type": "Modernism",
         "subtype": "Cubism",
         "title": "The Cellist",
         "artist": "Marc Chagall",
         "year": [1939,1939]
     },
-    "81": {
+    "79": {
         "type": "Modernism",
         "subtype": "Abstract",
-        "title": "One: Number 31, 1950",
+        "title": "One, Number 31, 1950",
         "artist": "Jackson Pollock",
         "year": [1950,1950]
     },
-    "82": {
+    "80": {
         "type": "Modernism",
         "subtype": "Abstract",
         "title": "Elegy to the Spanish Republic #34",
         "artist": "Robert Motherwell",
         "year": [1953,1954]
     },
-    "83": {
+    "81": {
         "type": "Modernism",
         "subtype": "Abstract",
         "title": "The Bay",
         "artist": "Helen Frankenthaler",
         "year": [1963,1963]
     },
-    "84": {
-        "type": "Modernism",
-        "subtype": "Post-modernism",
-        "title": "Clothespin",
-        "artist": "Claes Oldenburg",
-        "year": [1976,1976]
-    },
-    "85": {
+    "82": {
         "type": "Modernism",
         "subtype": "Abstract",
         "title": "Sacrificial Grace",
         "artist": "Makoto Fujimura",
         "year": [1997,1997]
     },
-    "86": {
+    "83": {
         "type": "Modernism",
         "subtype": "Post-modernism",
         "title": "The Tranquility of Solitude: for George Dyer",
