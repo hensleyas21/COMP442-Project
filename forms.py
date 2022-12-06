@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 import artwork_dataloader
 from wtforms.fields import StringField, SubmitField, EmailField, PasswordField, RadioField, BooleanField, SelectField, HiddenField
 from wtforms.validators import ValidationError, InputRequired, Optional, Length, EqualTo, Regexp
-from cropper import cropper_weighted_random
+from cropper import crop
 import os
 script_dir = os.path.dirname(__file__)
 import string
@@ -100,6 +100,7 @@ class QuizForm(FlaskForm):
     q9 = RadioField(label = "s", choices = [])
     q10 = RadioField(label = "s", choices = [])
     answers = HiddenField(label = "")
+    images = []
     submit = SubmitField(label = "Submit")
     def generateQuestions(self, pieces):
         qtypes = ['What is the title of this art work?', 'What year was this art work made in?', 'Who made this art work?']
@@ -116,16 +117,18 @@ class QuizForm(FlaskForm):
             if piece['year'] not in years:
                 years.append(piece['year'])
         
-        
+        art_dir = os.path.join(script_dir, "static/Artworks Database/Artpieces")
         for field, value in self._fields.items():
             #determine the type of question the user will be asked
             qtype = random.randint(0,2)
 
             #pick art work for client to identify
 
-            #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            piece = pieces[random.randint(0, len(pieces) - 1)] #<- CROP THIS IMAGE with piece['title']
-            #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            piece = pieces[random.randint(0, len(pieces) - 1)] 
+            filename = piece['title'] + ".jpg"
+            piece_dir = os.path.join(art_dir, filename)
+            self.images.append(cropper.crop(0.4, piece_dir))
+            
             choices = []
             print(piece['title'])
             #add correct answer to choices
@@ -173,7 +176,11 @@ class QuizForm(FlaskForm):
                 self.answers.label.text += "C"
             else:
                 self.answers.label.text += "D"
-            
+
+            #assign each choise 'A' 'B' 'C' and 'D'
+            for i in range(0, 4):
+                choices[i] = (chr(i + 65), choices[i])
+
             if isinstance(value, RadioField):
                 value.label = qtypes[qtype]
                 value.choices = choices

@@ -4,9 +4,9 @@ import random
 from pydub import AudioSegment
 import os
 import string
+import math
 
-script_dir = os.path.dirname(__file__)
-
+script_dir = os.path.abspath(os.path.dirname(__file__))
 
 # random string generator
 def gen_string():
@@ -46,14 +46,13 @@ def cropper_weighted(percent, x,y):
 def crop(percent, path):
     image = Image.open(path)
     width = percent*image.size[0]
-    x = random.randrange(image.size[0])
+    x = random.randrange(0, image.size[0] - math.ceil(width))
     length = percent*image.size[1]
-    y = random.randrange(image.size[1])
+    y = random.randrange(0, image.size[1] - math.ceil(length))
     image_cropped = image.crop((x,y,x + width, y + length))
-    path = script_dir + '\static\CroppedImages\\'
-    new_path = path + gen_string()
-    image_cropped.save(new_path)
-    return new_path
+    relpath = os.path.join('.\static\Cropped Images', gen_string())
+    image_cropped.save(relpath)
+    return relpath
 
 def cropper_weighted_random(percent, string):
     output_list = []

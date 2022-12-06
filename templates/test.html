@@ -11,10 +11,10 @@
     <body>
         {{ form.hidden_tag() }}
         {{ form.answers() }} {{ form.answers.label }}
-        {% for question in questions %}
+        {% for image, question in questions.items() %}
             <div>
                 <p>{{ question.label }}</p> 
-                <img src="" alt="imagine cropped image here">
+                <img src=".{{ image }}" alt="imagine cropped image here">
                 <p>{{ question() }}</p> 
             </div>
         {% endfor %}

@@ -272,7 +272,9 @@ def post_quiz():
         pieces = dataloader.filter(filters)
         qform = QuizForm()
         qform.generateQuestions(pieces)
-        return render_template('test.html', form=qform, questions = [value for key, value in qform._fields.items() if isinstance(value, RadioField)], method='POST')
+        qfields = [value for key, value in qform._fields.items() if isinstance(value, RadioField)]
+        questions = dict([(qform.images[i], qfields[i]) for i in range(0, len(qfields) - 1)])
+        return render_template('test.html', form=qform, questions = questions, method='POST')
     else:
         redirect(url_for('get_quiz'))
 
