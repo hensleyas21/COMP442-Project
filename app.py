@@ -143,11 +143,14 @@ with app.app_context():
 
 
 
-@app.get('/')
+@app.route('/')
+def home_redirect():
+    return redirect(url_for('home'))
+
 @app.route('/home/')
 # @login_required
 def home():
-    return render_template('home.html')
+    return render_template('home.html', user=current_user)
 
 @app.get('/login/')
 def get_login():
@@ -290,9 +293,13 @@ def grades():
     return render_template('grades.html')
 
 @app.get('/logout/')
-@login_required
 def get_logout():
     logout_user()
-    flash('You have been logged out')
-    return redirect(url_for('get_login'))
+    return redirect(url_for('home'))
+
+@app.get("/scores/")
+def get_scores():
+    if (current_user == None):
+        redirect(url_for('get_login'))
+    return render_template("scores.html", user=current_user)
     
