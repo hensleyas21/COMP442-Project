@@ -134,12 +134,15 @@ class Score(db.Model):
     __tablename__ = 'Scores'
     id = db.Column(db.Integer, primary_key=True)
     user_email = db.Column(db.Unicode, db.ForeignKey('Users.email'), nullable=False)
-    score = db.Column(db.Float, nullable=False)
+    date = db.Column(db.DateTime, nullable=False)
+    num_correct = db.Column(db.Integer, nullable=False)
+    num_total = db.Column(db.Integer, nullable=False)
 
 with app.app_context():
+    db.drop_all()
     db.create_all()
 
-# we can remove this later down the line
+
 
 @app.get('/')
 @app.route('/home/')
