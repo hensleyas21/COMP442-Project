@@ -139,7 +139,6 @@ class Score(db.Model):
     num_total = db.Column(db.Integer, nullable=False)
 
 with app.app_context():
-    db.drop_all()
     db.create_all()
 
 
