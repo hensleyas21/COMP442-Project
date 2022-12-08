@@ -23,6 +23,9 @@
                     <a class="nav-link text-white" href="{{url_for('get_study')}}">Study</a>
                     <a class="nav-link text-white" href="{{url_for('get_quiz')}}">Quiz</a>
                     <a class="nav-link text-white" href="{{url_for('grades')}}">Grades</a>
+                    {% if user.first_name %}
+                        <a class="nav-link text-white" href="{{url_for('get_logout')}}">Log Out</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -34,7 +37,11 @@
             </ul>
         </div>
     </nav>
-    <h2>Welcome!</h2>
+    {% if user.first_name %}
+        <h2>Welcome, {{user.first_name}}!</h2>
+    {% else %}
+        <h2>Welcome!</h2>
+    {% endif %}
     <div class="card-group">
         <div class="card text-bg-light" style="width: 18rem;">
             <img src="/static/images/studying.png" class="card-img-top" alt="Person Studying">
