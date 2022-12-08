@@ -73,7 +73,7 @@ with open(pepfile, 'rb') as fin:
 pwd_hasher = UpdatedHasher(pepper_key)
 
 script_dir = os.path.abspath(os.path.dirname(__file__))
-sys.path.append(script_dir)
+sys.path.append
 
 app = Flask(__name__)
 
@@ -183,7 +183,6 @@ def get_register():
     form = RegistrationForm()
     return render_template("register.html", form=form)
 
-
 @app.post('/register/')
 def post_register():
     form = RegistrationForm()
@@ -218,7 +217,6 @@ def post_register():
         for field,error in form.errors.items():
             flash(f"{field}:{error}")
         return redirect(url_for('get_register'))
-
 
 @app.get('/study/')
 def get_study():
@@ -270,13 +268,41 @@ def post_quiz():
                 if key!='csrf_token':
                     filters.append(labels[key])
         pieces = dataloader.filter(filters)
-        qform = QuizForm()
-        qform.generateQuestions(pieces)
-        qfields = [value for key, value in qform._fields.items() if isinstance(value, RadioField)]
-        questions = dict([(qform.images[i], qfields[i]) for i in range(0, len(qfields) - 1)])
-        return render_template('test.html', form=qform, questions = questions, method='POST')
+        session['pieces'] = pieces
+        return redirect('../test/')
     else:
         redirect(url_for('get_quiz'))
+
+@app.get('/test/')
+def get_test():
+    try:
+        qform = QuizForm()
+        qform.generateQuestions(session['pieces'])        
+    except:
+        return redirect(url_for('get_quiz'))
+    session.pop('pieces', None)
+    session['answers']= qform.answers
+    qfields = [value for field, value in qform._fields.items() if field[0] == 'q']
+    print(qfields)
+    questions = dict([(qform.images[i], qfields[i]) for i in range(0, len(qfields))])
+    return render_template('test.html', form=qform, questions = questions)
+
+@app.post('/test/')
+def post_test():
+    form = QuizForm(request.form)
+    answers = ""
+    score = 0
+    for field, value in form.data.items():
+        if(field[0] == 'q'):
+            if value == None:
+                answers += 'E'
+            else:
+                answers += value
+    for i in range(0, len(answers)):
+        if answers[i] == session['answers'][i]:    
+            score = score + 1
+    session.pop('answers', None)
+    return str(score) + "/" + str(len(answers))
 
 @app.route('/quizMode/<string:artworks>')
 def get_quizMode(artworks):

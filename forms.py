@@ -80,14 +80,6 @@ class QuizSelectionForm(FlaskForm):
     contemporaryMusic = BooleanField("Contemporary Music")
     submit = SubmitField("Submit")
 
-class CorrectAnswer(object):
-    def __init__ (self, answer):
-        self.answer = answer
-    def __call__(self, form, field):
-        message = 'Incorrect answer'
-        if field.data != self.answer:
-            raise ValidationError(message)
-
 class QuizForm(FlaskForm):
     q1 = RadioField(label = "s", choices = [])
     q2 = RadioField(label = "s", choices = [])
@@ -99,15 +91,19 @@ class QuizForm(FlaskForm):
     q8 = RadioField(label = "s", choices = [])
     q9 = RadioField(label = "s", choices = [])
     q10 = RadioField(label = "s", choices = [])
-    answers = HiddenField(label = "")
+    answers = ""
     images = []
     submit = SubmitField(label = "Submit")
     def generateQuestions(self, pieces):
+        #remove all cropped images form directory
+        crop_dir = os.path.join(script_dir, "static\\Cropped Images\\")
+        crops = os.listdir(crop_dir)
+        for crop in crops:
+            os.remove(crop_dir + crop)
         qtypes = ['What is the title of this art work?', 'What year was this art work made in?', 'Who made this art work?']
         titles = []
         artists = []
         years = []
-
         #get title, artist, and dates for all pieces in the selected range
         for piece in pieces:
             if piece['title'] not in titles:
@@ -117,7 +113,7 @@ class QuizForm(FlaskForm):
             if piece['year'] not in years:
                 years.append(piece['year'])
         
-        art_dir = os.path.join(script_dir, "static/Artworks Database/Artpieces")
+        art_dir = os.path.join(script_dir, "static\Artworks Database\Artpieces")
         for field, value in self._fields.items():
             #determine the type of question the user will be asked
             qtype = random.randint(0,2)
@@ -127,10 +123,9 @@ class QuizForm(FlaskForm):
             piece = pieces[random.randint(0, len(pieces) - 1)] 
             filename = piece['title'] + ".jpg"
             piece_dir = os.path.join(art_dir, filename)
-            self.images.append(cropper.crop(0.4, piece_dir))
+            self.images.append(cropper.crop(0.25, piece_dir))
             
             choices = []
-            print(piece['title'])
             #add correct answer to choices
             answer = None
             if(qtype == 0):
@@ -153,7 +148,6 @@ class QuizForm(FlaskForm):
                 random.shuffle(years)
                 i = 0
                 while len(choices) < 4:
-                    print(choices[0])
                     test = random.randint(years[i][0], years[i][1])
                     if test not in range(piece['year'][0], piece['year'][1] + 1):
                         choices.append(test)
@@ -169,13 +163,13 @@ class QuizForm(FlaskForm):
 
             #add correct answer to form answers
             if answer == choices[0]:
-                self.answers.label.text += "A"
+                self.answers += "A"
             elif answer == choices[1]:
-                self.answers.label.text += "B"
+                self.answers += "B"
             elif answer == choices[2]:
-                self.answers.label.text += "C"
+                self.answers += "C"
             else:
-                self.answers.label.text += "D"
+                self.answers += "D"
 
             #assign each choise 'A' 'B' 'C' and 'D'
             for i in range(0, 4):
