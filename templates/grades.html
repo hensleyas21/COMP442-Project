@@ -45,15 +45,61 @@
             <th>Incorrect Answers</th>
             <th>Score</th>
         </thead>
+        {% if grades %}
         {% for grade in grades %}
         <tr>
-            <td> {{ grade.date }} </td>
+            <td> {{ grade.current_date }} </td>
             <td> {{ grade.num_correct }} </td>
             <td> {{ grade.num_total - grade.num_correct }} </td>
             <td> {{ (grade.num_correct * 100) / grade.num_total }}%</td>
         </tr>
         {% endfor %}
+        {% else %}
+        <div>
+            <p> It looks like you don't have any grades yet, you should 
+                <a href="{{ url_for('get_quiz') }}">take a quiz</a> 
+                to see if you know your stuff!</p>
+        </div>
+        {% endif %}
      </table>
+     {% elif view == 'anon' %}
+     <div>
+        <p>
+            Hey! It looks like you're not signed in, 
+            registering with us is compeltely free for now so don't miss out!
+            Once you have an account you will be able to
+            <ul>
+                <li>Save results of the quizzes you take</li>
+                <li>Enter "study mode" where you can view art at your liesure</li>
+            </ul>
+        <p>    
+            <a href="{{ url_for('get_register') }}">Click here</a>
+            to create your account today!
+        </p>
+     </div>
+     <table>
+        <thead>
+            <th>Date</th>
+            <th>Correct Answers</th>
+            <th>Incorrect Answers</th>
+            <th>Score</th>
+        </thead>
+        {% if grades %}
+        <tr>
+            <td> {{ grade.current_date }} </td>
+            <td> {{ grade.num_correct }} </td>
+            <td> {{ grade.num_total - grade.num_correct }} </td>
+            <td> {{ (grade.num_correct * 100) / grade.num_total }}%</td>
+        </tr>
+        {% else %}  
+     </table>
+     <div>
+        <p> It looks like you don't have any grades yet, you should 
+            <a href='get_quiz'>take a quiz</a> 
+            to see if you know your stuff!
+        </p>
+    </div>
+     {% endif %}
     {% endif %}
 </body>
 </html>

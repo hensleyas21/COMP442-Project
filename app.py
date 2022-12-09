@@ -314,10 +314,7 @@ def post_test():
     try:
         x = current_user.email
     except:
-        score_instance = {'current_date': date.today(), 'num_correct': score, 'num_total':len(answers)}
-        anon_grades = session.pop('grades', [])
-        anon_grades.append(score_instance)
-        session['grades'] = anon_grades
+        session['grades'] = {'current_date': date.today(), 'num_correct': score, 'num_total':len(answers)}
     else:
         score_instance = Score(
             user_email = current_user.email,
@@ -341,8 +338,7 @@ def grades():
         x = current_user.email
     except:
         #anonymous mode
-        print(session['grades'])
-        return render_template('grades.html', grades = session['grades'], view = 'student', user=current_user)
+        return render_template('grades.html', grade = session.pop('grades', None), view = 'anon', user=current_user)
     if(current_user.is_instructor == False):
         #student mode
         grades = Score.query.filter_by(user_email=current_user.email)
@@ -351,7 +347,7 @@ def grades():
     else:
         #teacher mode
         students = User.query.filter_by(class_code = current_user.class_code, is_instructor = False).all()
-        return render_template('grades.html', students=students, user=current_user)
+        return render_template('grades.html', students=students, user=current_user, view='teacher')
     
 
 @app.get('/logout/')
