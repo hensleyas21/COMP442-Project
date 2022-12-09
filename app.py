@@ -144,6 +144,11 @@ with app.app_context():
     db.create_all()
 
 @app.route('/')
+
+@app.route('/')
+def home_redirect():
+    return redirect(url_for('home'))
+
 @app.route('/home/')
 def home():
     return render_template('home.html', user=current_user)
@@ -227,7 +232,7 @@ def get_study():
     except:
         return redirect(url_for('get_register'))
     form = StudyForm()
-    return render_template('study.html', form=form, method='GET')  
+    return render_template('study.html', form=form, user=current_user, method='GET')  
 
 @app.post('/study/')
 def post_study():
@@ -254,7 +259,7 @@ def post_study():
 def get_quiz():
     pair = {}
     form = QuizSelectionForm()
-    return render_template('quiz.html', form=form, method='GET', pair = pair)
+    return render_template('quiz.html', form=form, method='GET', pair = pair, user=current_user)
 
 @app.post('/quiz/')
 def post_quiz():
@@ -293,7 +298,7 @@ def get_test():
     qfields = [value for field, value in qform._fields.items() if field[0] == 'q']
     print(qfields)
     questions = dict([(qform.images[i], qfields[i]) for i in range(0, len(qfields))])
-    return render_template('test.html', form=qform, questions = questions)
+    return render_template('test.html', form=qform, questions = questions, user=current_user)
 
 @app.post('/test/')
 def post_test():
@@ -326,11 +331,6 @@ def post_test():
         db.session.commit()
     finally:
         return redirect(url_for('grades'))
-
-@app.route('/quizMode/<string:artworks>')
-def get_quizMode(artworks):
-    quizform = QuizForm()
-    return render_template('quizMode.html', quizform=quizform, artworks=artworks)
 
 @app.route('/grades/')
 def grades():
