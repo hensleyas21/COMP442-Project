@@ -35,6 +35,9 @@ def stringify(word):
 def jsonif(dic):
     return json.dump(dic)
 
+def json_dump(var):
+    return json.dumps(var)
+
 # method that I call inside jinja to do the cropping
 def cropper_weighted_random(percent, path):
     image = Image.open(path) 
@@ -79,7 +82,7 @@ app = Flask(__name__)
 
 #making the crop method a global one so that the jinja template can access it
 app.jinja_env.globals.update(
-    cropper_weighted_random=cropper_weighted_random, len=length, str=stringify, dump=jsonif, save=save)
+    cropper_weighted_random=cropper_weighted_random, len=length, str=stringify, dump=jsonif, save=save, json_dump=json_dump)
     
 app.jinja_env.add_extension('jinja2.ext.do')
 app.jinja_env.filters['shuffle'] = filter_shuffle
@@ -248,8 +251,9 @@ def post_study():
 
 @app.get('/quiz/')
 def get_quiz():
+    pair = {}
     form = QuizSelectionForm()
-    return render_template('quiz.html', form=form, method='GET')
+    return render_template('quiz.html', form=form, method='GET', pair = pair)
 
 @app.post('/quiz/')
 def post_quiz():
