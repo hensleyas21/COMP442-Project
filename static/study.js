@@ -1,4 +1,5 @@
 window.addEventListener("DOMContentLoaded", function() {
+    console.log("Javascript file successfully linked to HTML")
     loadPieces();
 });
 /**

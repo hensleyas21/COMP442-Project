@@ -359,9 +359,16 @@ def grades():
         student_grades = dict([(students[i].first_name + " " + students[i].last_name, averages[i]) for i in range(0, len(students))])
         return render_template('grades.html', students=student_grades, user=current_user, view='teacher')
     
-
 @app.get('/logout/')
 def get_logout():
     logout_user()
     return redirect(url_for('home'))
+
+
+
+#experimental code
+@app.route('/blah')
+def get_blah():
+    js_script = scriptdir + '\\static\\scripts\\study.js'
+    return render_template('application.html', dir=js_script)
     
