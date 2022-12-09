@@ -96,11 +96,6 @@ class QuizForm(FlaskForm):
     submit = SubmitField(label = "Submit")
     def generateQuestions(self, pieces):
         self.images = []
-        #remove all cropped images form directory
-        crop_dir = os.path.join(script_dir, "static\\Cropped Images\\")
-        crops = os.listdir(crop_dir)
-        for crop in crops:
-            os.remove(crop_dir + crop)
         qtypes = ['What is the title of this art work?', 'What year was this art work made in?', 'Who made this art work?']
         titles = []
         artists = []
@@ -125,8 +120,6 @@ class QuizForm(FlaskForm):
             filename = piece['title'] + ".jpg"
             piece_dir = os.path.join(art_dir, filename)
             self.images.append(cropper.crop(0.25, piece_dir))
-
-            print(self.images)
 
             choices = []
             #add correct answer to choices

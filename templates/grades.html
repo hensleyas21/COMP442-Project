@@ -70,18 +70,6 @@
         </div>
     </table>
         {% endif %} 
-
-
-
-
-
-
-
-
-
-
-
-
      {% elif view == 'anon' %}
      <div>
         <p>
@@ -97,7 +85,7 @@
             to create your account today!
         </p>
      </div>
-        {% if grades %}
+        {% if grade %}
         <table>
         <thead>
             <th>Date</th>
@@ -113,7 +101,6 @@
         </tr>
      </table>
         {% else %}  
-    
      <div>
         <p> It looks like you don't have any grades yet, you should 
             <a href="{{ url_for('get_quiz') }}">take a quiz</a> 
@@ -121,18 +108,23 @@
         </p>
     </div>
         {% endif %}
-
-
-
-
-
-
-
-
-
-
-        
     {% elif view == 'teacher' %}
+        {% if len(students.items()) > 0 %}
+        <table>
+            <thead>
+                <th>Student</th>
+                <th>Average</th>
+            </thead>
+            {% for name, average in students.items() %}
+                <tr>
+                    <td>{{ name }}</td>
+                    <td>{{ average }}%</td>
+                </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p>It looks like you don't have any students yet, maybe you forgot to send an email?</p>
+        {% endif %}
     {% endif %}
 </body>
 </html>

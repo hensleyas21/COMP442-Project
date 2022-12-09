@@ -296,7 +296,6 @@ def get_test():
     session.pop('pieces', None)
     session['answers']= qform.answers
     qfields = [value for field, value in qform._fields.items() if field[0] == 'q']
-    print(qfields)
     questions = dict([(qform.images[i], qfields[i]) for i in range(0, len(qfields))])
     return render_template('test.html', form=qform, questions = questions, user=current_user)
 
@@ -315,7 +314,11 @@ def post_test():
         if answers[i] == session['answers'][i]:    
             score = score + 1
     session.pop('answers', None)
-    print(str(score) + "/" + str(len(answers)))
+    #remove all cropped images form directory
+    crop_dir = os.path.join(script_dir, "static\\Cropped Images\\")
+    crops = os.listdir(crop_dir)
+    for crop in crops:
+        os.remove(crop_dir + crop)
     try:
         x = current_user.email
     except:
@@ -342,12 +345,19 @@ def grades():
     if(current_user.is_instructor == False):
         #student mode
         grades = Score.query.filter_by(user_email=current_user.email)
-        print(grades)
         return render_template('grades.html', grades = grades, view = 'student', user=current_user)
     else:
         #teacher mode
         students = User.query.filter_by(class_code = current_user.class_code, is_instructor = False).all()
-        return render_template('grades.html', students=students, user=current_user, view='teacher')
+        averages = []
+        for student in students:
+            s_grades = Score.query.filter_by(user_email = student.email).all()
+            if(len(s_grades) == 0):
+                averages.append("N/A")
+            else:
+                averages.append(10 * sum([score.num_correct for score in s_grades]) / len(s_grades))
+        student_grades = dict([(students[i].first_name + " " + students[i].last_name, averages[i]) for i in range(0, len(students))])
+        return render_template('grades.html', students=student_grades, user=current_user, view='teacher')
     
 
 @app.get('/logout/')
