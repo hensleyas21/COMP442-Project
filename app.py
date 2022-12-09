@@ -35,6 +35,9 @@ def stringify(word):
 def jsonif(dic):
     return json.dump(dic)
 
+def json_dump(var):
+    return json.dumps(var)
+
 # method that I call inside jinja to do the cropping
 def cropper_weighted_random(percent, path):
     image = Image.open(path) 
@@ -78,7 +81,7 @@ app = Flask(__name__)
 
 #making the crop method a global one so that the jinja template can access it
 app.jinja_env.globals.update(
-    cropper_weighted_random=cropper_weighted_random, len=length, str=stringify, dump=jsonif, save=save)
+    cropper_weighted_random=cropper_weighted_random, len=length, str=stringify, dump=jsonif, save=save, json_dump=json_dump)
     
 app.jinja_env.add_extension('jinja2.ext.do')
 app.jinja_env.filters['shuffle'] = filter_shuffle
@@ -201,7 +204,7 @@ def post_register():
         user = User(first_name=first_name, last_name=last_name, email=email, password=password, is_instructor=is_instructor, class_code=class_code)
         db.session.add(user)
         db.session.commit()
-        return redirect(url_for('home'))
+        return redirect(url_for('get_login'))
     else:
         # flash error messages for all validation problems
         if User.query.filter_by(email=form.email.data.lower()).first():
@@ -216,10 +219,15 @@ def post_register():
             flash(f"{field}:{error}")
         return redirect(url_for('get_register'))
 
+
 @app.get('/study/')
 def get_study():
+    try:
+        x = current_user.email
+    except:
+        return redirect(url_for('get_register'))
     form = StudyForm()
-    return render_template('study.html', form=form, method='GET') 
+    return render_template('study.html', form=form, method='GET')  
 
 @app.post('/study/')
 def post_study():
@@ -244,8 +252,9 @@ def post_study():
 
 @app.get('/quiz/')
 def get_quiz():
+    pair = {}
     form = QuizSelectionForm()
-    return render_template('quiz.html', form=form, method='GET')
+    return render_template('quiz.html', form=form, method='GET', pair = pair)
 
 @app.post('/quiz/')
 def post_quiz():
