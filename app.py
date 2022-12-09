@@ -1,6 +1,6 @@
 from enum import auto
 from flask import Flask, request, render_template, redirect, url_for, abort
-from flask import flash
+from flask import flash, session
 from flask_sqlalchemy import SQLAlchemy
 import jinja2
 from jinja2.ext import Extension
@@ -76,7 +76,7 @@ with open(pepfile, 'rb') as fin:
 pwd_hasher = UpdatedHasher(pepper_key)
 
 script_dir = os.path.abspath(os.path.dirname(__file__))
-sys.path.append(script_dir)
+sys.path.append
 
 app = Flask(__name__)
 
@@ -137,18 +137,23 @@ class Score(db.Model):
     __tablename__ = 'Scores'
     id = db.Column(db.Integer, primary_key=True)
     user_email = db.Column(db.Unicode, db.ForeignKey('Users.email'), nullable=False)
-    score = db.Column(db.Float, nullable=False)
+    date = db.Column(db.DateTime, nullable=False)
+    num_correct = db.Column(db.Integer, nullable=False)
+    num_total = db.Column(db.Integer, nullable=False)
 
 with app.app_context():
     db.create_all()
 
-# we can remove this later down the line
 
-@app.get('/')
+
+@app.route('/')
+def home_redirect():
+    return redirect(url_for('home'))
+
 @app.route('/home/')
 # @login_required
 def home():
-    return render_template('home.html')
+    return render_template('home.html', user=current_user)
 
 @app.get('/login/')
 def get_login():
@@ -186,7 +191,6 @@ def get_register():
     form = RegistrationForm()
     return render_template("register.html", form=form)
 
-
 @app.post('/register/')
 def post_register():
     form = RegistrationForm()
@@ -222,7 +226,6 @@ def post_register():
             flash(f"{field}:{error}")
         return redirect(url_for('get_register'))
 
-
 @app.get('/study/')
 def get_study():
     form = StudyForm()
@@ -257,7 +260,7 @@ def get_quiz():
 
 @app.post('/quiz/')
 def post_quiz():
-    form = QuizSelectionForm()
+    form = QuizSelectionForm(request.form)
     filters = []
     labels = {"archaic": "Archaic", "classical": "Classical", "hellenistic": "Hellenistic",
         "romanesque": "Romanesque", "gothic": "Gothic", "renaissance": "Renaissance",
@@ -274,9 +277,43 @@ def post_quiz():
                 if key!='csrf_token':
                     filters.append(labels[key])
         pieces = dataloader.filter(filters)
-        return render_template('quiz.html', pieces=pieces,form=form, method='POST')
+        session['pieces'] = pieces
+        return redirect(url_for('get_test'))
     else:
         redirect(url_for('get_quiz'))
+
+@app.get('/test/')
+def get_test():
+    qform = None
+    try:
+        qform = QuizForm()
+        qform.generateQuestions(session['pieces'])        
+    except:
+        return redirect(url_for('get_quiz'))
+    session.pop('pieces', None)
+    session['answers']= qform.answers
+    qfields = [value for field, value in qform._fields.items() if field[0] == 'q']
+    print(qfields)
+    questions = dict([(qform.images[i], qfields[i]) for i in range(0, len(qfields))])
+    return render_template('test.html', form=qform, questions = questions)
+
+@app.post('/test/')
+def post_test():
+    form = QuizForm(request.form)
+    answers = ""
+    score = 0
+    for field, value in form.data.items():
+        if(field[0] == 'q'):
+            if value == None:
+                answers += 'E'
+            else:
+                answers += value
+    for i in range(0, len(answers)):
+        if answers[i] == session['answers'][i]:    
+            score = score + 1
+    session.pop('answers', None)
+    print(str(score) + "/" + str(len(answers)))
+    return redirect(url_for('grades'))
 
 @app.route('/quizMode/<string:artworks>')
 def get_quizMode(artworks):
@@ -288,8 +325,13 @@ def grades():
     return render_template('grades.html')
 
 @app.get('/logout/')
-@login_required
 def get_logout():
     logout_user()
-    flash('You have been logged out')
-    return redirect(url_for('get_login'))
+    return redirect(url_for('home'))
+
+@app.get("/scores/")
+def get_scores():
+    if (current_user == None):
+        redirect(url_for('get_login'))
+    return render_template("scores.html", user=current_user)
+    

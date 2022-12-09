@@ -24,5 +24,16 @@ div.register {
     height: 15vw;
     object-fit: cover;
 }
+div.studyoutput {
+    padding-left: 50px;
+}
+
+body.studybody {
+    padding-bottom: 50px;
+}
+div.chooseselection
+{
+    padding-left: 50px;
+}
 
 

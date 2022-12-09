@@ -122,7 +122,7 @@
         "type": "Medieval",
         "subtype": "Romanesque",
         "title": "Facade of the Church of St Trophime",
-        "artist": "1180",
+        "artist": "Unknown",
         "year": [1180,1180]
     },
     "19": {
@@ -149,7 +149,7 @@
     "22": {
         "type": "Medieval",
         "subtype": "Gothic",
-        "title": "Saint-Chapelle",
+        "title": "Saint Chapelle",
         "artist": "Unknown",
         "year": [1248,1248]
     },
@@ -555,7 +555,7 @@
     "80": {
         "type": "Modernism",
         "subtype": "Abstract",
-        "title": "Elegy to the Spanish Republic #34",
+        "title": "Elegy to the Spanish Republic No 34",
         "artist": "Robert Motherwell",
         "year": [1953,1954]
     },
@@ -579,186 +579,5 @@
         "title": "The Tranquility of Solitude: for George Dyer",
         "artist": "Damien Hirst",
         "year": [2006,2006]
-    },
-    "87": {
-        "type": "Music", 
-        "subtype": "Baroque Music",
-        "title": "The Four Seasons: Spring",
-        "artist": "Antonio Vivaldi",
-        "movement": 1,
-        "year": [1725,1725]
-    },
-    "88": {
-        "type": "Music", 
-        "subtype": "Baroque Music",
-        "title": "Symphony No. 90",
-        "artist": "Joseph Haydn",
-        "movement": 1,
-        "year": [1788,1788]
-    },
-    "89": {
-        "type": "Music", 
-        "subtype": "Baroque Music",
-        "title": "Symphony No. 88",
-        "artist": "Joseph Haydn",
-        "movement": 1,
-        "year": [1787, 1787]
-    },
-    "90": {
-        "type": "Music", 
-        "subtype": "Baroque Music",
-        "title": "Symphony No. 88",
-        "artist": "Joseph Haydn",
-        "movement": 2,
-        "year": [1787, 1787]
-    },
-    "91": {
-        "type": "Music", 
-        "subtype": "Baroque Music",
-        "title": "Symphony No. 88",
-        "artist": "Joseph Haydn",
-        "movement": 3,
-        "year": [1787, 1787]
-    },
-    "92": {
-        "type": "Music", 
-        "subtype": "Baroque Music",
-        "title": "Symphony No. 88",
-        "artist": "Joseph Haydn",
-        "movement": 4,
-        "year": [1787, 1787]
-    },
-    "93": {
-        "type": "Music", 
-        "subtype": "Baroque Music",
-        "title": "Symphony No. 80",
-        "artist": "Joseph Haydn",
-        "movement": 1,
-        "year": [1784,1784]
-    },
-    "94": {
-        "type": "Music", 
-        "subtype": "Baroque Music",
-        "title": "Symphony No. 45",
-        "artist": "Joseph Haydn",
-        "movement": 1,
-        "year": [1772, 1772]
-    },
-    "95": {
-        "type": "Music", 
-        "subtype": "Classical Music",
-        "title": "The Marriage of Figaro",
-        "artist": "Wolfgang Amadeus Mozart",
-        "movement": 2,
-        "scene": 1,
-        "year": [1786,1786]
-    },
-    "96": {
-        "type": "Music", 
-        "subtype": "Classical Music",
-        "title": "The Marriage of Figaro",
-        "artist": "Wolfgang Amadeus Mozart",
-        "movement": 2,
-        "scene": 6,
-        "year": [1786,1786]
-    },
-    "97": {
-        "type": "Music", 
-        "subtype": "Classical Music",
-        "title": "The Marriage of Figaro",
-        "artist": "Wolfgang Amadeus Mozart",
-        "movement": 2,
-        "scene": 9,
-        "year": [1786,1786]
-    },
-    "98": {
-        "type": "Music", 
-        "subtype": "Classical Music",
-        "title": "The Marriage of Figaro",
-        "artist": "Wolfgang Amadeus Mozart",
-        "movement": "Sinfonia",
-        "year": [1808,1808]
-    },
-    "99": {
-        "type": "Music", 
-        "subtype": "Classical Music",
-        "title": "The Marriage of Figaro",
-        "artist": "Wolfgang Amadeus Mozart",
-        "movement": "1 No. 3",
-        "year": [1808,1808]
-    },
-    
-    "100": {
-        "type": "Music", 
-        "subtype": "Classical Music",
-        "title": "The Marriage of Figaro",
-        "artist": "Wolfgang Amadeus Mozart",
-        "movement": 1,
-        "scene": 8,
-        "year": [1786,1786]
-    },
-    "101": {
-        "type": "Music", 
-        "subtype": "Classical Music",
-        "title": "The Marriage of Figaro",
-        "artist": "Wolfgang Amadeus Mozart",
-        "movement": "4 No. 29",
-        "year": [1808,1808]
-    },
-    "102": {
-        "type": "Music", 
-        "subtype": "Romantic Music",
-        "title": "Symphony No. 5",
-        "artist": "Ludwig van Beethoven",
-        "movement": 1,
-        "year": [1808,1808]
-    },
-    "103": {
-        "type": "Music", 
-        "subtype": "Romantic Music",
-        "title": "Symphony No. 5",
-        "artist": "Ludwig van Beethoven",
-        "movement": 2,
-        "year": [1808,1808]
-    },
-    "104": {
-        "type": "Music", 
-        "subtype": "Romantic Music",
-        "title": "Symphony No. 5",
-        "artist": "Ludwig van Beethoven",
-        "movement": 3,
-        "year": [1808,1808]
-    },
-    "105": {
-        "type": "Music", 
-        "subtype": "Romantic Music",
-        "title": "Symphony No. 5",
-        "artist": "Ludwig van Beethoven",
-        "movement": 4,
-        "year": [1808,1808]
-    },
-    "106": {
-        "type": "Music", 
-        "subtype": "Romantic Music",
-        "title": "10 Pieces",
-        "artist": "Sibelius",
-        "movement": 1,
-        "year": [1909,1909]
-    },
-    "107": {
-        "type": "Music", 
-        "subtype": "Contemporary Music",
-        "title": "Piano Sonata No. 2: Concord Sonata",
-        "artist": "Ives",
-        "movement": 1,
-        "year": [1920,1920]
-    },
-    "108": {
-        "type": "Music", 
-        "subtype": "Contemporary Music",
-        "title": "Morph",
-        "artist": "Moravec",
-        "movement": 1,
-        "year": [2007,2007]
     }
 }
