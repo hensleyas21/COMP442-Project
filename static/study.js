@@ -5,13 +5,15 @@ window.addEventListener("DOMContentLoaded", function() {
 /**
  * Fetch the json file
  */
-function loadPieces(){
+async function loadPieces(){
 
     fetch("https://allarassemjonathan.github.io/api/file.json")
     .then(validateJSON)
-    .then(printInfo)
-    .catch(error => {
-        console.log("Classes fetch failed...", error)
+    .then(pieceList => {
+        let masterDiv = document.getElementById("main");
+        for (key in pieceList) {
+            
+        }
     });
 }
 /**
