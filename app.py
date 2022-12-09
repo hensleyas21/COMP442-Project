@@ -15,7 +15,7 @@ import random
 import string
 import cropper
 import json
-
+from datetime import date
 # random string generator
 def gen_string():
     letters = string.ascii_lowercase
@@ -74,7 +74,6 @@ pwd_hasher = UpdatedHasher(pepper_key)
 
 script_dir = os.path.abspath(os.path.dirname(__file__))
 sys.path.append
-
 app = Flask(__name__)
 
 #making the crop method a global one so that the jinja template can access it
@@ -134,21 +133,15 @@ class Score(db.Model):
     __tablename__ = 'Scores'
     id = db.Column(db.Integer, primary_key=True)
     user_email = db.Column(db.Unicode, db.ForeignKey('Users.email'), nullable=False)
-    date = db.Column(db.DateTime, nullable=False)
+    current_date = db.Column(db.DateTime, nullable=False)
     num_correct = db.Column(db.Integer, nullable=False)
     num_total = db.Column(db.Integer, nullable=False)
 
 with app.app_context():
     db.create_all()
 
-
-
 @app.route('/')
-def home_redirect():
-    return redirect(url_for('home'))
-
 @app.route('/home/')
-# @login_required
 def home():
     return render_template('home.html', user=current_user)
 
@@ -309,7 +302,24 @@ def post_test():
             score = score + 1
     session.pop('answers', None)
     print(str(score) + "/" + str(len(answers)))
-    return redirect(url_for('grades'))
+    try:
+        x = current_user.email
+    except:
+        score_instance = {'current_date': date.today(), 'num_correct': score, 'num_total':len(answers)}
+        anon_grades = session.pop('grades', [])
+        anon_grades.append(score_instance)
+        session['grades'] = anon_grades
+    else:
+        score_instance = Score(
+            user_email = current_user.email,
+            current_date = date.today(),
+            num_correct = score,
+            num_total = len(answers)
+        )
+        db.session.add(score_instance)
+        db.session.commit()
+    finally:
+        return redirect(url_for('grades'))
 
 @app.route('/quizMode/<string:artworks>')
 def get_quizMode(artworks):
@@ -318,16 +328,25 @@ def get_quizMode(artworks):
 
 @app.route('/grades/')
 def grades():
-    return render_template('grades.html')
+    try:
+        x = current_user.email
+    except:
+        #anonymous mode
+        print(session['grades'])
+        return render_template('grades.html', grades = session['grades'], view = 'student', user=current_user)
+    if(current_user.is_instructor == False):
+        #student mode
+        grades = Score.query.filter_by(user_email=current_user.email)
+        print(grades)
+        return render_template('grades.html', grades = session['grades'], view = 'student', user=current_user)
+    else:
+        #teacher mode
+        students = User.query.filter_by(class_code = current_user.class_code, is_instructor = False).all()
+        return render_template('grades.html', students=students, user=current_user)
+    
 
 @app.get('/logout/')
 def get_logout():
     logout_user()
     return redirect(url_for('home'))
-
-@app.get("/scores/")
-def get_scores():
-    if (current_user == None):
-        redirect(url_for('get_login'))
-    return render_template("scores.html", user=current_user)
     

@@ -32,7 +32,6 @@
                 </ul>
             </div>        
         </nav>
-        {% if method=="GET" %}
         <div class = "form-check one">
             <form method = "POST">
                 {{ form.hidden_tag() }}
@@ -102,21 +101,6 @@
                             <label for= "form.abstract.label.field_id"> {{ form.abstract.label.text }} </label>
                         </div>    
                 </section>
-                <section>
-                    <h3>Music</h3>
-                    <div>{{ form.baroqueMusic(class="form-check-input") }}
-                        <label for= "form.baroqueMusic.label.field_id"> {{ form.baroqueMusic.label.text }} </label>
-                    </div>
-                    <div>{{ form.classicalMusic(class="form-check-input") }}
-                        <label for= "form.classicalMusic.label.field_id"> {{ form.classicalMusic.label.text }} </label>
-                    </div>
-                    <div>{{ form.romanticMusic(class="form-check-input") }}
-                        <label for= "form.romanticMusic.label.field_id"> {{ form.romanticMusic.label.text }} </label>
-                    </div>           
-                    <div>{{ form.contemporaryMusic(class="form-check-input") }}
-                        <label for= "form.contemporaryMusic.label.field_id"> {{ form.contemporaryMusic.label.text }} </label>
-                    </div>     
-                </section>
         <div class="studysubmit">
             <div class="col-12">
                 <section>
@@ -126,92 +110,5 @@
         </div>
     </form>
 </div>
-        {%else%}
-            {% set types = ['type', 'title', 'subtype', 'year']%}
-            {% set dic = {'type': ['Ancient', 'Medieval', 'Renaissance', 'Baroque', 'Contemporary', 'Modernism'],
-                'subtype':['Classical', 'Archaic', 'Hellenistic', 'Romanesque', 'Gothic', 'Renaissance', 'Gothic', 
-                'Nothern Renaissance', 'Aristocratic Baroque', 'Dutch Baroque', 'Neoclassical', 'Romantic', 
-                'Impressionism', 'Post-Impressionism', 'Cubism', 'Post-modernism', 'Surrealism', 'Abstract', 
-                'Baroque Music', 'Classical Music', 'Romantic Music', 'Contemporary Music'] }%}
-            {% set pair={} %}
-            {{piece}}
-            {% for piece in pieces%}
-                <br>
-                {% set outer = loop.index%}
-                {{outer}}
-                {% set w_answers = []%}
-                {% set index = range(0,len(types)-1) | random() %}
-                {% set question = types[index]%}
-                {{question}}
-                <br>
-                <br>
-                <img src="{{ url_for('static', filename = '../static/Artworks Database/Artpieces/'+piece.title+'.jpg') }}" alt="{{ piece.title }}" height="200px"/>
-                <br>
-                <br>
-                {%if question=='type'%}
-                    {% set r_answer = piece.type%}
-                    {% set w_answer = dic['type']%}
-                    {% for i in range(len(dic['type']))%}
-                        {%do w_answers.append(w_answer[i])%}
-                    {%endfor%}
-                    {%do w_answers.append(r_answer)%}
-                    {% for answer in w_answers | shuffle %}
-                        <input  type="radio" name="{{question}}" value="{{answer}}"> {{answer}}
-                        <br>
-                    {%endfor%}
-                    {% set x=pair.__setitem__(str(outer), r_answer) %}
-                {%elif question=='title'%}
-                    {% set r_answer = piece.title%}
-                    {% for i in range(5)%}
-                        {% set i = range(0,len(pieces)-1) | random() %}
-                        {% set w_answer = pieces[i].title%}
-                        {%do w_answers.append(w_answer)%}
-                    {%endfor%}
-                    {%do w_answers.append(r_answer)%}
-                    {% for answer in w_answers | shuffle %}
-                        <input  type="radio" name="{{question}}" value="{{answer}}"> {{answer}}
-                        <br>
-                    {%endfor%}
-                    {% set x=pair.__setitem__(str(outer), r_answer) %}
-                {%elif question=='subtype'%}
-                    {% set r_answer = piece.subtype%}
-                    {% set w_answer = dic['subtype']%}
-                    {% for i in range(len(dic['subtype']))%}
-                        {%do w_answers.append(w_answer[i])%}
-                    {%endfor%}
-                    {%do w_answers.append(r_answer)%}
-                    {% for answer in w_answers | shuffle %}
-                        <input  type="radio" name="{{question}}" value="{{answer}}"> {{answer}}
-                        <br>
-                    {%endfor%}
-                    {% set x=pair.__setitem__(str(outer), r_answer) %}
-                {%elif question=='year'%}
-                    {% set r_answer = piece.year[0]%}
-                    {% for i in range(5)%}
-                        {% set i = range(0,len(pieces)-1) | random() %}
-                        {% set w_answer = pieces[i].year[0]%}
-                        {%do w_answers.append(w_answer)%}
-                    {%endfor%}
-                    {% for answer in w_answers | shuffle %}
-                        <input  type="radio" name="{{question}}" value="{{answer}}"> {{answer}}
-                        <br>
-                    {%endfor%}
-                    {% set x=pair.__setitem__(str(outer), r_answer) %}
-                {%endif%}
-                Answer is: {{r_answer}}
-                <br> 
-            {% endfor %}
-        {%endif%}
-        {{pair}}
-        
-        <button type="button" onclick='Grade(pair)'>Grade
-        </button>
-        <div id="result">
-        </div>
-        <script>
-            function Grade(dic){
-                console.log(dic);
-            }
-        </script>
     </body>
 </html>
