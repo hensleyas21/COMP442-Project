@@ -148,10 +148,9 @@ with app.app_context():
 
 @app.route('/')
 def home_redirect():
-    return redirect(url_for('home'))
+    return redirect(url_for('get_register'))
 
 @app.route('/home/')
-# @login_required
 def home():
     return render_template('home.html', user=current_user)
 
@@ -211,7 +210,7 @@ def post_register():
         user = User(first_name=first_name, last_name=last_name, email=email, password=password, is_instructor=is_instructor, class_code=class_code)
         db.session.add(user)
         db.session.commit()
-        return redirect(url_for('home'))
+        return redirect(url_for('get_login'))
     else:
         # flash error messages for all validation problems
         if User.query.filter_by(email=form.email.data.lower()).first():
@@ -226,10 +225,15 @@ def post_register():
             flash(f"{field}:{error}")
         return redirect(url_for('get_register'))
 
+
 @app.get('/study/')
 def get_study():
+    try:
+        x = current_user.email
+    except:
+        return redirect(url_for('get_register'))
     form = StudyForm()
-    return render_template('study.html', form=form, method='GET') 
+    return render_template('study.html', form=form, method='GET')  
 
 @app.post('/study/')
 def post_study():
