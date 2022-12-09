@@ -7,14 +7,29 @@ window.addEventListener("DOMContentLoaded", function() {
  */
 function loadPieces(){
 
-    fetch("C:\\Users\\ALLARASSEMJJ20\\WebProject\\COMP442-Project\\static\\Artworks Database\\pieces.json")
+    fetch("https://allarassemjonathan.github.io/api/file.json")
     .then(validateJSON)
     .then(printInfo)
     .catch(error => {
         console.log("Classes fetch failed...", error)
     });
 }
+/**
+ * Validate a response to ensure the HTTP status code indcates success.
+ * 
+ * @param {ClassAPIResource} data HTTP response to be checked
+ */
+function printInfo(data){
+    console.log(data);
+    const div_main = document.getElementById("main");
 
+    for (const element of data.results){
+        div_ref = document.createElement("li");
+        div_ref.innerText = element.title;
+        div_main.appendChild(div_ref);
+    }
+    
+}
 /**
  * Validate a response to ensure the HTTP status code indcates success.
  * 
