@@ -95,6 +95,7 @@ class QuizForm(FlaskForm):
     images = []
     submit = SubmitField(label = "Submit")
     def generateQuestions(self, pieces):
+        self.images = []
         #remove all cropped images form directory
         crop_dir = os.path.join(script_dir, "static\\Cropped Images\\")
         crops = os.listdir(crop_dir)
@@ -124,7 +125,9 @@ class QuizForm(FlaskForm):
             filename = piece['title'] + ".jpg"
             piece_dir = os.path.join(art_dir, filename)
             self.images.append(cropper.crop(0.25, piece_dir))
-            
+
+            print(self.images)
+
             choices = []
             #add correct answer to choices
             answer = None

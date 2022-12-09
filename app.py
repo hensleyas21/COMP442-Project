@@ -256,7 +256,7 @@ def get_quiz():
 
 @app.post('/quiz/')
 def post_quiz():
-    form = QuizSelectionForm()
+    form = QuizSelectionForm(request.form)
     filters = []
     labels = {"archaic": "Archaic", "classical": "Classical", "hellenistic": "Hellenistic",
         "romanesque": "Romanesque", "gothic": "Gothic", "renaissance": "Renaissance",
@@ -274,12 +274,13 @@ def post_quiz():
                     filters.append(labels[key])
         pieces = dataloader.filter(filters)
         session['pieces'] = pieces
-        return redirect('../test/')
+        return redirect(url_for('get_test'))
     else:
         redirect(url_for('get_quiz'))
 
 @app.get('/test/')
 def get_test():
+    qform = None
     try:
         qform = QuizForm()
         qform.generateQuestions(session['pieces'])        
@@ -307,7 +308,8 @@ def post_test():
         if answers[i] == session['answers'][i]:    
             score = score + 1
     session.pop('answers', None)
-    return str(score) + "/" + str(len(answers))
+    print(str(score) + "/" + str(len(answers)))
+    return redirect(url_for('grades'))
 
 @app.route('/quizMode/<string:artworks>')
 def get_quizMode(artworks):
