@@ -46,14 +46,14 @@
             </div>
         </nav>
     {% if view == 'student' %}
-     <table>
-        <thead>
-            <th>Date</th>
-            <th>Correct Answers</th>
-            <th>Incorrect Answers</th>
-            <th>Score</th>
-        </thead>
         {% if grades %}
+        <table>
+            <thead>
+                <th>Date</th>
+                <th>Correct Answers</th>
+                <th>Incorrect Answers</th>
+                <th>Score</th>
+        </thead>
         {% for grade in grades %}
         <tr>
             <td> {{ grade.current_date }} </td>
@@ -68,8 +68,20 @@
                 <a href="{{ url_for('get_quiz') }}">take a quiz</a> 
                 to see if you know your stuff!</p>
         </div>
-        {% endif %}
-     </table>
+    </table>
+        {% endif %} 
+
+
+
+
+
+
+
+
+
+
+
+
      {% elif view == 'anon' %}
      <div>
         <p>
@@ -85,29 +97,42 @@
             to create your account today!
         </p>
      </div>
-     <table>
+        {% if grades %}
+        <table>
         <thead>
             <th>Date</th>
             <th>Correct Answers</th>
             <th>Incorrect Answers</th>
             <th>Score</th>
         </thead>
-        {% if grades %}
         <tr>
             <td> {{ grade.current_date }} </td>
             <td> {{ grade.num_correct }} </td>
             <td> {{ grade.num_total - grade.num_correct }} </td>
             <td> {{ (grade.num_correct * 100) / grade.num_total }}%</td>
         </tr>
-        {% else %}  
      </table>
+        {% else %}  
+    
      <div>
         <p> It looks like you don't have any grades yet, you should 
-            <a href='get_quiz'>take a quiz</a> 
+            <a href="{{ url_for('get_quiz') }}">take a quiz</a> 
             to see if you know your stuff!
         </p>
     </div>
-     {% endif %}
+        {% endif %}
+
+
+
+
+
+
+
+
+
+
+        
+    {% elif view == 'teacher' %}
     {% endif %}
 </body>
 </html>

@@ -343,7 +343,7 @@ def grades():
         #student mode
         grades = Score.query.filter_by(user_email=current_user.email)
         print(grades)
-        return render_template('grades.html', grades = session['grades'], view = 'student', user=current_user)
+        return render_template('grades.html', grades = grades, view = 'student', user=current_user)
     else:
         #teacher mode
         students = User.query.filter_by(class_code = current_user.class_code, is_instructor = False).all()
