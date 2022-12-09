@@ -38,7 +38,6 @@ def cropper_weighted(percent, x,y):
             image = Image.open(el)
             width = percent*image.size[0]
             length = percent*image.size[1]
-            print(width, length)
             image_cropped = image.crop((x,y,x + width, y + length))
             image_cropped.save(str(percent) + '_cropped_'+ el)
     return image_cropped
@@ -57,18 +56,13 @@ def crop(percent, path):
 def cropper_weighted_random(percent, string):
     output_list = []
     names = os.listdir(script_dir + '/static/Artworks Database/Artpieces/')
-    print("I AM LOOKINF FOR YOU PART 2") 
-    print(names)
     for el in names:
         if el.split('.')[1] in ('jpg', 'jpeg', 'png'):
-            print("Im looking at this file rh " + el)
             image = Image.open(script_dir + '\static\Artworks Database\Artpieces\\' + el)
             width = percent*image.size[0]
             x = random.randrange(image.size[0])
             length = percent*image.size[1]
             y = random.randrange(image.size[1])
-            print(x,y)
-            print(width, length)
             image_cropped = image.crop((x,y,x + width, y + length))
             path = script_dir + '\\static\\CroppedImages\\'
             image_cropped.save(path + string)
@@ -86,8 +80,6 @@ def cropper_weighted(percent):
             x = random.randrange(image.size[0])
             length = percent*image.size[1]
             y = random.randrange(image.size[1])
-            print(x,y)
-            print(width, length)
             image_cropped = image.crop((x,y,x + width, y + length))
             name = str(percent) + '_cropped_'+ el
             image_cropped.save(name)
@@ -102,12 +94,6 @@ def grab_with_threshold(image):
         while y + step < image.size[1]:
             croppy = image.crop((x,y,x+step, y+step))
             data = croppy.getdata()
-            print("---------")
-            for el in data:
-                print(el)
-            print("---------")
             croppy.show()
             y = y + step
         x = x + step
-
-#print(crop(.4,r'C:\\Users\ALLARASSEMJJ20\WebProject\\COMP442-Project\static\Artworks Database\Artpieces\\The Nymph Galatea.jpg'))

@@ -15,7 +15,7 @@ import random
 import string
 import cropper
 import json
-
+from datetime import date
 # random string generator
 def gen_string():
     letters = string.ascii_lowercase
@@ -77,7 +77,6 @@ pwd_hasher = UpdatedHasher(pepper_key)
 
 script_dir = os.path.abspath(os.path.dirname(__file__))
 sys.path.append
-
 app = Flask(__name__)
 
 #making the crop method a global one so that the jinja template can access it
@@ -137,18 +136,18 @@ class Score(db.Model):
     __tablename__ = 'Scores'
     id = db.Column(db.Integer, primary_key=True)
     user_email = db.Column(db.Unicode, db.ForeignKey('Users.email'), nullable=False)
-    date = db.Column(db.DateTime, nullable=False)
+    current_date = db.Column(db.DateTime, nullable=False)
     num_correct = db.Column(db.Integer, nullable=False)
     num_total = db.Column(db.Integer, nullable=False)
 
 with app.app_context():
     db.create_all()
 
-
+@app.route('/')
 
 @app.route('/')
 def home_redirect():
-    return redirect(url_for('get_register'))
+    return redirect(url_for('home'))
 
 @app.route('/home/')
 def home():
@@ -233,7 +232,7 @@ def get_study():
     except:
         return redirect(url_for('get_register'))
     form = StudyForm()
-    return render_template('study.html', form=form, method='GET')  
+    return render_template('study.html', form=form, user=current_user, method='GET')  
 
 @app.post('/study/')
 def post_study():
@@ -260,7 +259,7 @@ def post_study():
 def get_quiz():
     pair = {}
     form = QuizSelectionForm()
-    return render_template('quiz.html', form=form, method='GET', pair = pair)
+    return render_template('quiz.html', form=form, method='GET', pair = pair, user=current_user)
 
 @app.post('/quiz/')
 def post_quiz():
@@ -297,9 +296,8 @@ def get_test():
     session.pop('pieces', None)
     session['answers']= qform.answers
     qfields = [value for field, value in qform._fields.items() if field[0] == 'q']
-    print(qfields)
     questions = dict([(qform.images[i], qfields[i]) for i in range(0, len(qfields))])
-    return render_template('test.html', form=qform, questions = questions)
+    return render_template('test.html', form=qform, questions = questions, user=current_user)
 
 @app.post('/test/')
 def post_test():
@@ -316,26 +314,61 @@ def post_test():
         if answers[i] == session['answers'][i]:    
             score = score + 1
     session.pop('answers', None)
-    print(str(score) + "/" + str(len(answers)))
-    return redirect(url_for('grades'))
-
-@app.route('/quizMode/<string:artworks>')
-def get_quizMode(artworks):
-    quizform = QuizForm()
-    return render_template('quizMode.html', quizform=quizform, artworks=artworks)
+    #remove all cropped images form directory
+    crop_dir = os.path.join(script_dir, "static\\Cropped Images\\")
+    crops = os.listdir(crop_dir)
+    for crop in crops:
+        os.remove(crop_dir + crop)
+    try:
+        x = current_user.email
+    except:
+        session['grades'] = {'current_date': date.today(), 'num_correct': score, 'num_total':len(answers)}
+    else:
+        score_instance = Score(
+            user_email = current_user.email,
+            current_date = date.today(),
+            num_correct = score,
+            num_total = len(answers)
+        )
+        db.session.add(score_instance)
+        db.session.commit()
+    finally:
+        return redirect(url_for('grades'))
 
 @app.route('/grades/')
 def grades():
-    return render_template('grades.html')
-
+    try:
+        x = current_user.email
+    except:
+        #anonymous mode
+        return render_template('grades.html', grade = session.pop('grades', None), view = 'anon', user=current_user)
+    if(current_user.is_instructor == False):
+        #student mode
+        grades = Score.query.filter_by(user_email=current_user.email)
+        return render_template('grades.html', grades = grades, view = 'student', user=current_user)
+    else:
+        #teacher mode
+        students = User.query.filter_by(class_code = current_user.class_code, is_instructor = False).all()
+        averages = []
+        for student in students:
+            s_grades = Score.query.filter_by(user_email = student.email).all()
+            if(len(s_grades) == 0):
+                averages.append("N/A")
+            else:
+                averages.append(10 * sum([score.num_correct for score in s_grades]) / len(s_grades))
+        student_grades = dict([(students[i].first_name + " " + students[i].last_name, averages[i]) for i in range(0, len(students))])
+        return render_template('grades.html', students=student_grades, user=current_user, view='teacher')
+    
 @app.get('/logout/')
 def get_logout():
     logout_user()
     return redirect(url_for('home'))
 
-@app.get("/scores/")
-def get_scores():
-    if (current_user == None):
-        redirect(url_for('get_login'))
-    return render_template("scores.html", user=current_user)
+
+
+#experimental code
+@app.route('/blah')
+def get_blah():
+    js_script = scriptdir + '\\static\\scripts\\study.js'
+    return render_template('application.html', dir=js_script)
     

@@ -7,6 +7,9 @@
         <title>Study</title>
         <link href="/static/styling.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script >
+        var pair = "{{pair}}";
+    </script>
     </head>
     <body>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
@@ -24,12 +27,22 @@
             <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{{url_for('get_login')}}">Login or Register</a>           
+                        {% if user.first_name %}
+                            <a class="nav-link text-white">{{user.first_name}} {{user.last_name}}</a>
+                        {% else %}
+                            <a class="nav-link text-white" href="{{url_for('get_login')}}">Login</a>
+                        {% endif %}
+                    </li>
+                    <li>
+                        {% if user.first_name %}
+                            <a class="nav-link text-white" href="{{url_for('get_logout')}}">Log Out</a>
+                        {% else %}
+                            <a class="nav-link text-white" href="{{url_for('get_register')}}">Register</a>
+                        {% endif %}
                     </li>
                 </ul>
-            </div>        
+            </div>
         </nav>
-        {% if method=="GET" %}
         <div class = "form-check one">
             <form method = "POST">
                 {{ form.hidden_tag() }}
@@ -123,114 +136,5 @@
         </div>
     </form>
 </div>
-
-        {%else%}
-            {% set types = ['type', 'title', 'subtype', 'year']%}
-            {% set dic = {'type': ['Ancient', 'Medieval', 'Renaissance', 'Baroque', 'Contemporary', 'Modernism'],
-                'subtype':['Classical', 'Archaic', 'Hellenistic', 'Romanesque', 'Gothic', 'Renaissance', 'Gothic', 
-                'Nothern Renaissance', 'Aristocratic Baroque', 'Dutch Baroque', 'Neoclassical', 'Romantic', 
-                'Impressionism', 'Post-Impressionism', 'Cubism', 'Post-modernism', 'Surrealism', 'Abstract', 
-                'Baroque Music', 'Classical Music', 'Romantic Music', 'Contemporary Music'] }%}
-            {% set pair={} %}
-            {{piece}}
-            <div id="general">
-            {% for piece in pieces%}
-            <div name="{{piece.title}}">
-                <br>
-                {% set outer = loop.index%}
-                {{outer}}
-                {% set w_answers = []%}
-                {% set index = range(0,len(types)-1) | random() %}
-                {% set question = types[index]%}
-                {{question}}
-                <br>
-                <br>
-                <img src="{{ url_for('static', filename = '../static/Artworks Database/Artpieces/'+piece.title+'.jpg') }}" alt="{{ piece.title }}" height="200px"/>
-                <br>
-                <br>
-                {%if question=='type'%}
-                    {% set r_answer = piece.type%}
-                    {% set w_answer = dic['type']%}
-                    {% for i in range(len(dic['type']))%}
-                        {%do w_answers.append(w_answer[i])%}
-                    {%endfor%}
-                    {%do w_answers.append(r_answer)%}
-                    {% for answer in w_answers | shuffle %}
-                        <input  type="radio" name="{{outer}}" value="{{answer}}"> {{answer}}
-                        <br>
-                    {%endfor%}
-                    {% set x=pair.__setitem__(str(outer), r_answer) %}
-                {%elif question=='title'%}
-                    {% set r_answer = piece.title%}
-                    {% for i in range(5)%}
-                        {% set i = range(0,len(pieces)-1) | random() %}
-                        {% set w_answer = pieces[i].title%}
-                        {%do w_answers.append(w_answer)%}
-                    {%endfor%}
-                    {%do w_answers.append(r_answer)%}
-                    {% for answer in w_answers | shuffle %}
-                        <input  type="radio" name="{{outer}}" value="{{answer}}"> {{answer}}
-                        <br>
-                    {%endfor%}
-                    {% set x=pair.__setitem__(str(outer), r_answer) %}
-                {%elif question=='subtype'%}
-                    {% set r_answer = piece.subtype%}
-                    {% set w_answer = dic['subtype']%}
-                    {% for i in range(len(dic['subtype']))%}
-                        {%do w_answers.append(w_answer[i])%}
-                    {%endfor%}
-                    {%do w_answers.append(r_answer)%}
-                    {% for answer in w_answers | shuffle %}
-                        <input  type="radio" name="{{outer}}" value="{{answer}}"> {{answer}}
-                        <br>
-                    {%endfor%}
-                    {% set x=pair.__setitem__(str(outer), r_answer) %}
-                {%elif question=='year'%}
-                    {% set r_answer = piece.year[0]%}
-                    {% for i in range(5)%}
-                        {% set i = range(0,len(pieces)-1) | random() %}
-                        {% set w_answer = pieces[i].year[0]%}
-                        {%do w_answers.append(w_answer)%}
-                    {%endfor%}
-                    {% for answer in w_answers | shuffle %}
-                        <input  type="radio" name="{{outer}}" value="{{answer}}"> {{answer}}
-                        <br>
-                    {%endfor%}
-                    {% set x=pair.__setitem__(str(outer), r_answer) %}
-                {%endif%}
-                Answer is: {{r_answer}}
-                <br> 
-            </div>
-            {% endfor %}
-        </div>
-        {%endif%}
-       
-        {% set json_dic = json_dump(pair)%}
-        {{json_dic}}
-        <button type="button" onclick='Grade()'>Grade
-        </button>
-        <div id="result">
-        </div>
-        <script>window.addEventListener("DOMContentLoaded", async () => {
-            Grade
-        });
-            function Grade(){
-                const div = document.getElementById("result");
-                dic = '{{json_dic}}';
-                dic = dic.replace(/&#34;/g,'"');
-                obj = Object(dic);
-                
-                let score = 0;
-                // grab the big outside div
-
-                let gen_div = document.getElementById("general");
-                let count1 =  gen_div.childElementCount;
-                for(let i = 0; i < count1; i++){
-                    let list = document.getElementsByName(i);
-                    console.log(list);
-                }
-                
-            }
-        </script>
     </body>
 </html>

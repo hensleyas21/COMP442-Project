@@ -14,7 +14,7 @@
         {% for image, question in questions.items() %}
             <div>
                 <p>{{ question.label }}</p> 
-                <img src=".{{ image }}" alt="imagine cropped image here">
+                <img src=".{{ image }}" alt="imagine cropped image here" width="300px">
                 <p>{{ question() }}</p> 
             </div>
         {% endfor %}
