@@ -253,7 +253,7 @@ def post_study():
                 if key!='csrf_token':
                     filters.append(labels[key])
     pieces = dataloader.filter(filters)
-    return render_template('study.html', method='POST', pieces = pieces)
+    return render_template('study.html', method='POST', pieces = pieces, user=current_user)
 
 @app.get('/quiz/')
 def get_quiz():
